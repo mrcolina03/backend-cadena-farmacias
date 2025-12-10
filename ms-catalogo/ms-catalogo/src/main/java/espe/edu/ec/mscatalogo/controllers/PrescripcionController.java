@@ -86,4 +86,11 @@ public class PrescripcionController {
         return ResponseEntity.noContent().build();
     }
 
+    //activar
+    @PutMapping("/{id}/activar")
+    public ResponseEntity<Void> activarPrescripcion(@PathVariable Long id) {
+        prescripcionService.activate(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

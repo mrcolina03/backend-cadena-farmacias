@@ -115,6 +115,14 @@ public class ClienteService {
         clienteRepository.deleteById(id);
     }
 
+    @Transactional
+    public void activate(Long id) {
+        Cliente cliente = clienteRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Cliente no encontrado con ID: " + id));
+        cliente.setActivo(true);
+        clienteRepository.save(cliente);
+    }
+
     private ClienteDTO convertToDTO(Cliente cliente) {
         ClienteDTO dto = new ClienteDTO();
         dto.setId(cliente.getId());

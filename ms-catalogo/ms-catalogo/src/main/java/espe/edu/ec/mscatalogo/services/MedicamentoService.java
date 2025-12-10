@@ -6,6 +6,7 @@ import espe.edu.ec.mscatalogo.models.entities.Medicamento;
 import espe.edu.ec.mscatalogo.repositories.MedicamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class MedicamentoService {
 
     @Autowired
     private MedicamentoRepository medicamentoRepository;
+    private TransactionDefinition transactionDefinition;
 
     @Transactional(readOnly = true)
     public List<MedicamentoDTO> findAll() {
@@ -112,6 +114,14 @@ public class MedicamentoService {
             throw new ResourceNotFoundException("Medicamento no encontrado con ID: " + id);
         }
         medicamentoRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void activate(Long id) {
+        Medicamento medicamento = medicamentoRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Medicamento no encontrado con ID: " + id));
+        medicamento.setActivo(true);
+        medicamentoRepository.save(medicamento);
     }
 
     private MedicamentoDTO convertToDTO(Medicamento medicamento) {

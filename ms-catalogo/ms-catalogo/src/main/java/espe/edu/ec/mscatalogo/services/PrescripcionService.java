@@ -170,6 +170,14 @@ public class PrescripcionService {
         prescripcionRepository.deleteById(id);
     }
 
+    @Transactional
+    public void activate(Long id) {
+        Prescripcion prescripcion = prescripcionRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Prescripción no encontrada con ID: " + id));
+        prescripcion.setActivo(true);
+        prescripcionRepository.save(prescripcion);
+    }
+
     private PrescripcionDTO convertToDTO(Prescripcion prescripcion) {
         PrescripcionDTO dto = new PrescripcionDTO();
         dto.setId(prescripcion.getId());

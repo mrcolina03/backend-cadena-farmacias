@@ -80,4 +80,11 @@ public class MedicamentoController {
         return ResponseEntity.noContent().build();
     }
 
+    //activar
+    @PutMapping("/{id}/activar")
+    public ResponseEntity<Void> activarMedicamento(@PathVariable Long id) {
+        medicamentoService.activate(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

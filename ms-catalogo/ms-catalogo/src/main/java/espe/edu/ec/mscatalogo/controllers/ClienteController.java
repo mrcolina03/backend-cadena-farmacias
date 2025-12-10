@@ -68,6 +68,12 @@ public class ClienteController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/{id}/activar")
+    public ResponseEntity<Void> activarCliente(@PathVariable Long id) {
+        clienteService.activate(id);
+        return ResponseEntity.noContent().build();
+    }
+
     @DeleteMapping("/{id}/permanente")
     public ResponseEntity<Void> hardDeleteCliente(@PathVariable Long id) {
         clienteService.hardDelete(id);
