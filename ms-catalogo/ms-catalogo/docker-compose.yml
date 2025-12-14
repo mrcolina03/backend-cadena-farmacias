@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  ms-catalogo:
+    image: ms-catalogo
+    container_name: ms-catalogo
+    ports:
+      - "8081:8081"
+    environment:
+      DB_HOST: mysql-sisdb2025
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PWD: abcd
+      DB_NAME: catalogo_db
+    networks:
+      - red_cadena_farmacia
+networks:
+  red_cadena_farmacia:
+    external: true
