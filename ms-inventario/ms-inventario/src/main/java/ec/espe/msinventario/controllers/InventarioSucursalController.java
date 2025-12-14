@@ -1,7 +1,7 @@
 package ec.espe.msinventario.controllers;
 
-import ec.espe.msinventario.models.dto.InventarioSucursalDTO;
-import ec.espe.msinventario.services.InventarioSucursal.InventarioSucursalService;
+import ec.espe.msinventario.models.dto.*;
+import ec.espe.msinventario.services.InventarioSucursal.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
