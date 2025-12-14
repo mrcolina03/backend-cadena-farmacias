@@ -1,6 +1,6 @@
 package ec.espe.msinventario.services.sucursal;
 
-import ec.espe.msinventario.models.dto.SucursalDTO;
+import ec.espe.msinventario.models.dto.*;
 
 import java.util.List;
 
