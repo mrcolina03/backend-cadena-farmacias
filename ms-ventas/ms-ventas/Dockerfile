@@ -1,13 +1,13 @@
 # Java 17
-FROM eclipse-temurin:21-jdk-alpine
+FROM eclipse-temurin:17-jdk-alpine
 
 WORKDIR /app
 
-# Copiar el JAR desde la etapa de construcción
+# Copiar el JAR generado
 COPY ./target/ms-ventas-0.0.1-SNAPSHOT.jar ./app.jar
 
-# Exponer el puerto
+# Exponer el puerto del microservicio
 EXPOSE 8083
 
-# Comando para ejecutar la aplicación
+# Ejecutar la aplicación
 ENTRYPOINT ["java", "-jar", "app.jar"]
