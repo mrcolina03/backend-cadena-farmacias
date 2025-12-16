@@ -1,0 +1,642 @@
+{
+    "info": {
+    "name": "MS Catálogo - Farmacias",
+        "description": "Colección de requests para el Microservicio de Catálogo",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+},
+    "variable": [
+    {
+        "key": "baseUrl",
+        "value": "http://localhost:8081/api/catalogo",
+        "type": "string"
+    }
+],
+    "item": [
+    {
+        "name": "Medicamentos",
+        "item": [
+            {
+                "name": "Crear Medicamento",
+                "request": {
+                    "method": "POST",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "{\n  \"codigo\": \"MED001\",\n  \"nombre\": \"Paracetamol 500mg\",\n  \"descripcion\": \"Analgésico y antipirético\",\n  \"laboratorio\": \"Laboratorios ABC\",\n  \"principioActivo\": \"Paracetamol\",\n  \"presentacion\": \"Caja x 20 tabletas\",\n  \"precio\": 5.50,\n  \"requiereReceta\": false,\n  \"fechaVencimiento\": \"2026-12-31\"\n}"
+                    },
+                    "url": {
+                        "raw": "{{baseUrl}}/medicamentos",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["medicamentos"]
+                    }
+                }
+            },
+            {
+                "name": "Crear Medicamento con Receta",
+                "request": {
+                    "method": "POST",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "{\n  \"codigo\": \"MED002\",\n  \"nombre\": \"Amoxicilina 500mg\",\n  \"descripcion\": \"Antibiótico de amplio espectro\",\n  \"laboratorio\": \"Laboratorios XYZ\",\n  \"principioActivo\": \"Amoxicilina\",\n  \"presentacion\": \"Caja x 12 cápsulas\",\n  \"precio\": 12.75,\n  \"requiereReceta\": true,\n  \"fechaVencimiento\": \"2027-06-30\"\n}"
+                    },
+                    "url": {
+                        "raw": "{{baseUrl}}/medicamentos",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["medicamentos"]
+                    }
+                }
+            },
+            {
+                "name": "Listar Todos los Medicamentos",
+                "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/medicamentos",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["medicamentos"]
+                    }
+                }
+            },
+            {
+                "name": "Listar Medicamentos Activos",
+                "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/medicamentos/activos",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["medicamentos", "activos"]
+                    }
+                }
+            },
+            {
+                "name": "Obtener Medicamento por ID",
+                "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/medicamentos/1",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["medicamentos", "1"]
+                    }
+                }
+            },
+            {
+                "name": "Obtener Medicamento por Código",
+                "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/medicamentos/codigo/MED001",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["medicamentos", "codigo", "MED001"]
+                    }
+                }
+            },
+            {
+                "name": "Buscar Medicamentos por Nombre",
+                "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/medicamentos/buscar?nombre=Para",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["medicamentos", "buscar"],
+                        "query": [
+                            {
+                                "key": "nombre",
+                                "value": "Para"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "Buscar por Laboratorio",
+                "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/medicamentos/laboratorio/Laboratorios ABC",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["medicamentos", "laboratorio", "Laboratorios ABC"]
+                    }
+                }
+            },
+            {
+                "name": "Actualizar Medicamento",
+                "request": {
+                    "method": "PUT",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "{\n  \"codigo\": \"MED001\",\n  \"nombre\": \"Paracetamol 500mg\",\n  \"descripcion\": \"Analgésico y antipirético de uso común\",\n  \"laboratorio\": \"Laboratorios ABC\",\n  \"principioActivo\": \"Paracetamol\",\n  \"presentacion\": \"Caja x 20 tabletas\",\n  \"precio\": 6.00,\n  \"requiereReceta\": false,\n  \"fechaVencimiento\": \"2026-12-31\"\n}"
+                    },
+                    "url": {
+                        "raw": "{{baseUrl}}/medicamentos/1",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["medicamentos", "1"]
+                    }
+                }
+            },
+            {
+                "name": "Desactivar Medicamento (Soft Delete)",
+                "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/medicamentos/1",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["medicamentos", "1"]
+                    }
+                }
+            },
+            {
+                "name": "Eliminar Medicamento (Hard Delete)",
+                "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/medicamentos/1/permanente",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["medicamentos", "1", "permanente"]
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "name": "Clientes",
+        "item": [
+            {
+                "name": "Crear Cliente",
+                "request": {
+                    "method": "POST",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "{\n  \"cedula\": \"1234567890\",\n  \"nombres\": \"Juan Carlos\",\n  \"apellidos\": \"Pérez García\",\n  \"email\": \"juan.perez@email.com\",\n  \"telefono\": \"0987654321\",\n  \"direccion\": \"Av. Principal 123, Quito\",\n  \"fechaNacimiento\": \"1985-03-15\",\n  \"genero\": \"Masculino\"\n}"
+                    },
+                    "url": {
+                        "raw": "{{baseUrl}}/clientes",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["clientes"]
+                    }
+                }
+            },
+            {
+                "name": "Crear Cliente 2",
+                "request": {
+                    "method": "POST",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "{\n  \"cedula\": \"0987654321\",\n  \"nombres\": \"María Elena\",\n  \"apellidos\": \"González Torres\",\n  \"email\": \"maria.gonzalez@email.com\",\n  \"telefono\": \"0998765432\",\n  \"direccion\": \"Calle Secundaria 456, Guayaquil\",\n  \"fechaNacimiento\": \"1990-07-22\",\n  \"genero\": \"Femenino\"\n}"
+                    },
+                    "url": {
+                        "raw": "{{baseUrl}}/clientes",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["clientes"]
+                    }
+                }
+            },
+            {
+                "name": "Listar Todos los Clientes",
+                "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/clientes",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["clientes"]
+                    }
+                }
+            },
+            {
+                "name": "Listar Clientes Activos",
+                "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/clientes/activos",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["clientes", "activos"]
+                    }
+                }
+            },
+            {
+                "name": "Obtener Cliente por ID",
+                "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/clientes/1",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["clientes", "1"]
+                    }
+                }
+            },
+            {
+                "name": "Obtener Cliente por Cédula",
+                "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/clientes/cedula/1234567890",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["clientes", "cedula", "1234567890"]
+                    }
+                }
+            },
+            {
+                "name": "Buscar Clientes por Nombre o Apellido",
+                "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/clientes/buscar?busqueda=Juan",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["clientes", "buscar"],
+                        "query": [
+                            {
+                                "key": "busqueda",
+                                "value": "Juan"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "Actualizar Cliente",
+                "request": {
+                    "method": "PUT",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "{\n  \"cedula\": \"1234567890\",\n  \"nombres\": \"Juan Carlos\",\n  \"apellidos\": \"Pérez García\",\n  \"email\": \"juan.perez.actualizado@email.com\",\n  \"telefono\": \"0987654321\",\n  \"direccion\": \"Av. Principal 123, Quito - Actualizado\",\n  \"fechaNacimiento\": \"1985-03-15\",\n  \"genero\": \"Masculino\"\n}"
+                    },
+                    "url": {
+                        "raw": "{{baseUrl}}/clientes/1",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["clientes", "1"]
+                    }
+                }
+            },
+            {
+                "name": "Desactivar Cliente (Soft Delete)",
+                "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/clientes/1",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["clientes", "1"]
+                    }
+                }
+            },
+            {
+                "name": "Eliminar Cliente (Hard Delete)",
+                "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/clientes/1/permanente",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["clientes", "1", "permanente"]
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "name": "Prescripciones",
+        "item": [
+            {
+                "name": "Crear Prescripción",
+                "request": {
+                    "method": "POST",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "{\n  \"clienteId\": 1,\n  \"medicamentoId\": 2,\n  \"nombreMedico\": \"Dr. Roberto Sánchez\",\n  \"numeroLicenciaMedico\": \"MSP-12345\",\n  \"diagnostico\": \"Infección respiratoria aguda\",\n  \"indicaciones\": \"Tomar 1 cápsula cada 8 horas por 7 días. No suspender el tratamiento.\",\n  \"cantidad\": 21,\n  \"fechaEmision\": \"2024-12-10\",\n  \"fechaVencimiento\": \"2025-01-10\"\n}"
+                    },
+                    "url": {
+                        "raw": "{{baseUrl}}/prescripciones",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["prescripciones"]
+                    }
+                }
+            },
+            {
+                "name": "Crear Prescripción 2",
+                "request": {
+                    "method": "POST",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "{\n  \"clienteId\": 2,\n  \"medicamentoId\": 1,\n  \"nombreMedico\": \"Dra. Laura Mendoza\",\n  \"numeroLicenciaMedico\": \"MSP-67890\",\n  \"diagnostico\": \"Cefalea tensional moderada\",\n  \"indicaciones\": \"Tomar 1 tableta cada 6 horas según sea necesario para el dolor. No exceder 4 dosis al día.\",\n  \"cantidad\": 20,\n  \"fechaEmision\": \"2024-12-10\",\n  \"fechaVencimiento\": \"2025-02-10\"\n}"
+                    },
+                    "url": {
+                        "raw": "{{baseUrl}}/prescripciones",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["prescripciones"]
+                    }
+                }
+            },
+            {
+                "name": "Listar Todas las Prescripciones",
+                "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/prescripciones",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["prescripciones"]
+                    }
+                }
+            },
+            {
+                "name": "Listar Prescripciones Activas",
+                "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/prescripciones/activas",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["prescripciones", "activas"]
+                    }
+                }
+            },
+            {
+                "name": "Obtener Prescripción por ID",
+                "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/prescripciones/1",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["prescripciones", "1"]
+                    }
+                }
+            },
+            {
+                "name": "Obtener Prescripciones por Cliente",
+                "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/prescripciones/cliente/1",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["prescripciones", "cliente", "1"]
+                    }
+                }
+            },
+            {
+                "name": "Obtener Prescripciones por Medicamento",
+                "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/prescripciones/medicamento/2",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["prescripciones", "medicamento", "2"]
+                    }
+                }
+            },
+            {
+                "name": "Listar Prescripciones Vigentes",
+                "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/prescripciones/vigentes",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["prescripciones", "vigentes"]
+                    }
+                }
+            },
+            {
+                "name": "Listar Prescripciones Vencidas",
+                "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/prescripciones/vencidas",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["prescripciones", "vencidas"]
+                    }
+                }
+            },
+            {
+                "name": "Actualizar Prescripción",
+                "request": {
+                    "method": "PUT",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "{\n  \"clienteId\": 1,\n  \"medicamentoId\": 2,\n  \"nombreMedico\": \"Dr. Roberto Sánchez\",\n  \"numeroLicenciaMedico\": \"MSP-12345\",\n  \"diagnostico\": \"Infección respiratoria aguda - actualizado\",\n  \"indicaciones\": \"Tomar 1 cápsula cada 8 horas por 10 días. No suspender el tratamiento.\",\n  \"cantidad\": 30,\n  \"fechaEmision\": \"2024-12-10\",\n  \"fechaVencimiento\": \"2025-01-10\"\n}"
+                    },
+                    "url": {
+                        "raw": "{{baseUrl}}/prescripciones/1",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["prescripciones", "1"]
+                    }
+                }
+            },
+            {
+                "name": "Desactivar Prescripción (Soft Delete)",
+                "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/prescripciones/1",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["prescripciones", "1"]
+                    }
+                }
+            },
+            {
+                "name": "Eliminar Prescripción (Hard Delete)",
+                "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/prescripciones/1/permanente",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["prescripciones", "1", "permanente"]
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "name": "Casos de Error",
+        "item": [
+            {
+                "name": "Error - Medicamento Código Duplicado",
+                "request": {
+                    "method": "POST",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "{\n  \"codigo\": \"MED001\",\n  \"nombre\": \"Medicamento Duplicado\",\n  \"descripcion\": \"Test de código duplicado\",\n  \"laboratorio\": \"Lab Test\",\n  \"principioActivo\": \"Test\",\n  \"presentacion\": \"Test\",\n  \"precio\": 10.00,\n  \"requiereReceta\": false\n}"
+                    },
+                    "url": {
+                        "raw": "{{baseUrl}}/medicamentos",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["medicamentos"]
+                    }
+                }
+            },
+            {
+                "name": "Error - Validación Precio Negativo",
+                "request": {
+                    "method": "POST",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "{\n  \"codigo\": \"MED999\",\n  \"nombre\": \"Test\",\n  \"descripcion\": \"Test\",\n  \"laboratorio\": \"Lab Test\",\n  \"presentacion\": \"Test\",\n  \"precio\": -5.00,\n  \"requiereReceta\": false\n}"
+                    },
+                    "url": {
+                        "raw": "{{baseUrl}}/medicamentos",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["medicamentos"]
+                    }
+                }
+            },
+            {
+                "name": "Error - Cliente Cédula Duplicada",
+                "request": {
+                    "method": "POST",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "{\n  \"cedula\": \"1234567890\",\n  \"nombres\": \"Test\",\n  \"apellidos\": \"Duplicado\",\n  \"email\": \"test@test.com\"\n}"
+                    },
+                    "url": {
+                        "raw": "{{baseUrl}}/clientes",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["clientes"]
+                    }
+                }
+            },
+            {
+                "name": "Error - Validación Email Inválido",
+                "request": {
+                    "method": "POST",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "{\n  \"cedula\": \"9999999999\",\n  \"nombres\": \"Test\",\n  \"apellidos\": \"Email Inválido\",\n  \"email\": \"email-invalido\"\n}"
+                    },
+                    "url": {
+                        "raw": "{{baseUrl}}/clientes",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["clientes"]
+                    }
+                }
+            },
+            {
+                "name": "Error - Prescripción Cliente No Existe",
+                "request": {
+                    "method": "POST",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "{\n  \"clienteId\": 999,\n  \"medicamentoId\": 1,\n  \"nombreMedico\": \"Dr. Test\",\n  \"diagnostico\": \"Test\",\n  \"indicaciones\": \"Test\",\n  \"cantidad\": 10,\n  \"fechaEmision\": \"2024-12-10\",\n  \"fechaVencimiento\": \"2025-01-10\"\n}"
+                    },
+                    "url": {
+                        "raw": "{{baseUrl}}/prescripciones",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["prescripciones"]
+                    }
+                }
+            },
+            {
+                "name": "Error - Recurso No Encontrado (404)",
+                "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                        "raw": "{{baseUrl}}/medicamentos/999",
+                        "host": ["{{baseUrl}}"],
+                        "path": ["medicamentos", "999"]
+                    }
+                }
+            }
+        ]
+    }
+]
+}
