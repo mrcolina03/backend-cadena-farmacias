@@ -11,7 +11,7 @@ spring:
     open-in-view: false
 
 inventario:
-  url: http://inventario-service:8082
+  url: http://ms-inventario:8082
 
 logging:
   level:

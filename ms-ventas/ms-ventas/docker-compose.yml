@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  ms-ventas:
+    image: ms-ventas
+    container_name: ms-ventas
+    ports:
+      - "8083:8083"
+    environment:
+      DB_HOST: mysql-sisdb2025
+      DB_PORT: 3306
+      DB_USER: ventas
+      DB_PASSWORD: ventas123
+      SPRING_PROFILES_ACTIVE: prod
+      INVENTARIO_URL: http://ms-inventario:8082
+    networks:
+      - red_cadena_farmacia
+
+networks:
+  red_cadena_farmacia:
+    external: true
