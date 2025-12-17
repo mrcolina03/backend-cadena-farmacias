@@ -10,7 +10,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: abcd
     volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql 
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       - db_data:/var/lib/mysql
     networks:
       - red_cadena_farmacia
@@ -18,7 +18,7 @@ services:
   # Microservicio Catálogo (Puerto 8081)
   ms-catalogo:
     build:
-      context: ./ms-catalogo/ms-catalogo # Ruta a la carpeta del repo
+      context: ./ms-catalogo/ms-catalogo
       dockerfile: Dockerfile
     container_name: ms-catalogo
     ports:
@@ -47,13 +47,12 @@ services:
       DB_PORT: 3306
       DB_USER: root
       DB_PWD: abcd
-      DB_NAME: inventario_db # Asegúrate de que esta variable exista en su config
+      DB_NAME: inventario_db
       API_CATALOGO: ms-catalogo
       FRONTEND: frontend-cadena-farmacia
       FRONTEND_PORT: 80
     depends_on:
       - mysql-sisdb2025
-      - ms-catalogo
     networks:
       - red_cadena_farmacia
 
@@ -72,21 +71,31 @@ services:
       DB_NAME: ventas_db
       DB_USER: root
       DB_PASSWORD: abcd
-      INVENTARIO_URL: http://ms-inventario:8082
+      INVENTARIO_URL: http://localhost:8082
     depends_on:
       - mysql-sisdb2025
-      - ms-inventario
     networks:
       - red_cadena_farmacia
 
-  # Frontend (React / Vite)
+  # Frontend (React / Vite) - ADAPTADO
   frontend-cadena-farmacia:
     build:
-      context: ./FRONT/frontend-cadena-farmacias # Ruta a la carpeta de tu front
+      context: ./FRONT/frontend-cadena-farmacias
       dockerfile: Dockerfile
+      args:
+        # Importante: Vite necesita estas variables durante el 'npm run build'
+        VITE_API_BASE_URL: "http://localhost:8081/api/catalogo"
+        VITE_API_INVENTARIO_URL: "http://localhost:8082/api/inventario"
+        VITE_API_VENTAS_URL: "http://localhost:8083/api/ventas"
+        VITE_API_REPORTES_URL: "http://localhost:8083/api/reportes"
     container_name: frontend-cadena-farmacia
     ports:
       - "5173:80"
+    environment:
+      VITE_API_BASE_URL: "http://localhost:8081/api/catalogo"
+      VITE_API_INVENTARIO_URL: "http://localhost:8082/api/inventario"
+      VITE_API_VENTAS_URL: "http://localhost:8083/api/ventas"
+      VITE_API_REPORTES_URL: "http://localhost:8083/api/reportes"
     depends_on:
       - ms-catalogo
       - ms-inventario

@@ -1,19 +1,17 @@
 package org.example.msventas.services;
 
-import org.example.msventas.models.dto.*;
-import org.springframework.transaction.annotation.Transactional;
 import org.example.msventas.clients.InventarioClient;
-import org.example.msventas.exceptions.DatosInvalidosException;
-import org.example.msventas.exceptions.RecursoNoEncontradoException;
-import org.example.msventas.exceptions.ServicioExternoException;
-import org.example.msventas.exceptions.StockInsuficienteException;
+import org.example.msventas.exceptions.*;
+import org.example.msventas.models.dto.*;
 import org.example.msventas.models.entities.DetalleVenta;
 import org.example.msventas.models.entities.Venta;
 import org.example.msventas.repositories.VentaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +31,6 @@ public class VentaService {
     @Transactional
     public Venta crearVenta(VentaRequestDTO request) {
 
-        // 🔴 Validaciones de entrada
         if (request == null) {
             throw new DatosInvalidosException("La solicitud de venta no puede ser nula");
         }
@@ -54,25 +51,30 @@ public class VentaService {
         BigDecimal total = BigDecimal.ZERO;
         List<DetalleVenta> detalles = new ArrayList<>();
 
-        // 1. Fase de Validación de Stock y Cálculo
         for (DetalleVentaDTO item : request.getItems()) {
+
             if (item.getCantidad() <= 0) {
-                throw new DatosInvalidosException("Cantidad inválida para Medicamento ID: " + item.getMedicamentoId());
+                throw new DatosInvalidosException(
+                        "Cantidad inválida para medicamento ID: " + item.getMedicamentoId()
+                );
             }
 
             Integer stock;
             try {
-                // 🟢 CORRECCIÓN: Se envía medicamentoId y sucursalId
-                stock = inventarioClient.consultarStock(item.getMedicamentoId(), request.getSucursalId());
+                stock = inventarioClient.consultarStock(
+                        item.getMedicamentoId(),
+                        request.getSucursalId()
+                );
             } catch (Exception e) {
-                throw new ServicioExternoException("Error de conexión con el inventario.");
+                throw new ServicioExternoException("Error de conexión con el inventario");
             }
 
             if (stock == null || stock < item.getCantidad()) {
-                throw new StockInsuficienteException("Stock insuficiente para Medicamento ID: " + item.getMedicamentoId());
+                throw new StockInsuficienteException(
+                        "Stock insuficiente para medicamento ID: " + item.getMedicamentoId()
+                );
             }
 
-            // Simulación de precio
             BigDecimal precio = obtenerPrecioMedicamento(item.getMedicamentoId());
             BigDecimal subtotal = precio.multiply(BigDecimal.valueOf(item.getCantidad()));
 
@@ -91,21 +93,22 @@ public class VentaService {
         venta.setDetalles(detalles);
         venta.setTotal(total);
 
-        // 2. Guardar la venta primero
         Venta ventaGuardada = ventaRepository.save(venta);
 
-        // 3. 🚀 Fase de Descuento de Stock
+        // Descuento de stock
         for (DetalleVenta item : ventaGuardada.getDetalles()) {
             try {
-                StockRequestDTO stockRequest = new StockRequestDTO(
-                        item.getMedicamentoId(),
-                        ventaGuardada.getSucursalId(),
-                        item.getCantidad()
+                inventarioClient.descontarStock(
+                        new StockRequestDTO(
+                                item.getMedicamentoId(),
+                                ventaGuardada.getSucursalId(),
+                                item.getCantidad()
+                        )
                 );
-                // 🟢 CORRECCIÓN: Llamada para descontar el inventario real
-                inventarioClient.descontarStock(stockRequest);
             } catch (Exception e) {
-                throw new ServicioExternoException("Error al procesar descuento de stock: " + e.getMessage());
+                throw new ServicioExternoException(
+                        "Error al descontar stock: " + e.getMessage()
+                );
             }
         }
 
@@ -117,12 +120,11 @@ public class VentaService {
     // ============================
     @Transactional(readOnly = true)
     public List<VentaResponseDTO> listarVentas() {
-        return ventaRepository.findAll().stream()
-                .map(this::mapToDTO)
+        return ventaRepository.findAll()
+                .stream()
+                .map(this::mapToVentaResponseDTO)
                 .toList();
     }
-
-
 
     // ============================
     // READ BY ID
@@ -131,8 +133,7 @@ public class VentaService {
     public VentaResponseDTO obtenerVenta(Long id) {
         Venta venta = ventaRepository.findById(id)
                 .orElseThrow(() -> new RecursoNoEncontradoException("Venta no encontrada"));
-
-        return mapToDTO(venta);
+        return mapToVentaResponseDTO(venta);
     }
 
     // ============================
@@ -153,14 +154,26 @@ public class VentaService {
     }
 
     // ============================
-    // UTIL
+    // REPORTES
     // ============================
-    private BigDecimal obtenerPrecioMedicamento(Long medicamentoId) {
-        // Simulación de precio
-        return BigDecimal.valueOf(10.00);
+    @Transactional(readOnly = true)
+    public List<VentaReporteDTO> obtenerVentasPorRango(LocalDate desde, LocalDate hasta) {
+
+        LocalDateTime fechaInicio = desde.atStartOfDay();
+        LocalDateTime fechaFin = hasta.plusDays(1).atStartOfDay().minusNanos(1);
+
+        return ventaRepository
+                .findByFechaBetweenOrderByFechaAsc(fechaInicio, fechaFin)
+                .stream()
+                .map(this::mapToVentaReporteDTO)
+                .toList();
     }
 
-    private VentaResponseDTO mapToDTO(Venta venta) {
+    // ============================
+    // MAPPERS
+    // ============================
+    private VentaResponseDTO mapToVentaResponseDTO(Venta venta) {
+
         VentaResponseDTO dto = new VentaResponseDTO();
         dto.setId(venta.getId());
         dto.setFecha(venta.getFecha());
@@ -181,5 +194,24 @@ public class VentaService {
         );
 
         return dto;
+    }
+
+    private VentaReporteDTO mapToVentaReporteDTO(Venta venta) {
+
+        VentaReporteDTO dto = new VentaReporteDTO();
+        dto.setId(venta.getId());
+        dto.setFecha(venta.getFecha());
+        dto.setClienteId(venta.getClienteId());
+        dto.setSucursalId(venta.getSucursalId());
+        dto.setTotal(venta.getTotal());
+
+        return dto;
+    }
+
+    // ============================
+    // UTIL
+    // ============================
+    private BigDecimal obtenerPrecioMedicamento(Long medicamentoId) {
+        return BigDecimal.valueOf(10.00);
     }
 }
