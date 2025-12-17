@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @FeignClient(name = "inventario-service", url = "${inventario.url}")
 public interface InventarioClient {
-    @GetMapping("/inventario/{medicamentoId}/stock")
-    Integer consultarStock(@PathVariable Long medicamentoId);
+    // La ruta ahora coincide con la que pusimos en el controlador de arriba
+    @GetMapping("/api/inventario/inventario-sucursal/stock/{medicamentoId}/{sucursalId}")
+    Integer consultarStock(@PathVariable("medicamentoId") Long medicamentoId,
+                           @PathVariable("sucursalId") Long sucursalId);
 
-    @PostMapping("/inventario/descontar")
+    @PostMapping("/api/inventario/inventario-sucursal/descontar")
     void descontarStock(@RequestBody StockRequestDTO dto);
 }

@@ -21,4 +21,6 @@ public interface InventarioSucursalRepository extends JpaRepository<InventarioSu
     @Modifying
     @Query("UPDATE InventarioSucursal i SET i.estado = :estado WHERE i.sucursal.id = :sucursalId")
     void updateEstadoBySucursalId(@Param("sucursalId") Long sucursalId, @Param("estado") String estado);
+
+
 }

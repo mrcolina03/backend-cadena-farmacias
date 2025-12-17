@@ -4,7 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59200706-0b16-4a56-804a-43801fd50d7e" name="Changes" comment="" />
+    <list default="true" id="59200706-0b16-4a56-804a-43801fd50d7e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/src/main/java/ec/espe/msinventariov2/models/dto/StockRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/config/CorsConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/exceptions/DatosInvalidosException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/exceptions/RecursoNoEncontradoException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/exceptions/ServicioExternoException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/models/dto/DetalleVentaResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/models/dto/VentaResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/src/api/clients/ms-ventas/axiosConfig.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/src/api/clients/ms-ventas/reportesApi.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/src/api/clients/ms-ventas/ventasApi.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/src/app/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/src/app/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/src/components/layout/Sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/src/components/layout/Sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/src/domains/reportes/ReportesDashboard.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/src/domains/ventas/VentaDashboard.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/src/domains/ventas/VentaDetalle.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/src/domains/ventas/VentaForm.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/src/domains/ventas/VentaList.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/tsconfig.tsbuildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/src/main/java/ec/espe/msinventariov2/controllers/InventarioSucursalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/src/main/java/ec/espe/msinventariov2/controllers/InventarioSucursalController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/src/main/java/ec/espe/msinventariov2/repositories/InventarioSucursalRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/src/main/java/ec/espe/msinventariov2/repositories/InventarioSucursalRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/src/main/java/ec/espe/msinventariov2/services/InventarioSucursal/InventarioSucursalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/src/main/java/ec/espe/msinventariov2/services/InventarioSucursal/InventarioSucursalService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/src/main/java/ec/espe/msinventariov2/services/InventarioSucursal/InventarioSucursalServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/src/main/java/ec/espe/msinventariov2/services/InventarioSucursal/InventarioSucursalServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/clients/InventarioClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/clients/InventarioClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/controllers/VentaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/controllers/VentaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/exceptions/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/exceptions/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/models/dto/DetalleVentaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/models/dto/DetalleVentaDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/models/dto/StockRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/models/dto/StockRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/models/entities/DetalleVenta.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/models/entities/DetalleVenta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/models/entities/Venta.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/models/entities/Venta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/services/VentaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/services/VentaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/resources/application-prod.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/resources/application-prod.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/resources/application.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +52,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Dockerfile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -37,33 +76,94 @@
     &quot;accountId&quot;: &quot;fb03596f-c672-4ce4-aa41-8f043300d955&quot;
   }
 }</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
   <component name="ProjectId" id="36fjtqJrPScOODL8j1wiwRumFzY" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/ASUS/Documents/ESPE/7_SEPTIMO SEMESTRE ESPE/DISTRIBUIDAS/PARCIAL 2/PROYECTO",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;jsalomia&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ASUS/Documents/ESPE/7_SEPTIMO SEMESTRE ESPE/DISTRIBUIDAS/PARCIAL 2/PROYECTO&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ASUS\Documents\ESPE\7_SEPTIMO SEMESTRE ESPE\DISTRIBUIDAS\PARCIAL 2\PROYECTO\ms-ventas\ms-ventas" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.MsVentasApplication">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration name="MsCatalogoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="ms-catalogo" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="espe.edu.ec.mscatalogo.MsCatalogoApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MsInventariov2Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="test" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ec.espe.msinventariov2.MsInventariov2Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MsVentasApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="ms-ventas" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.msventas.MsVentasApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -82,12 +182,30 @@
       <updated>1765404737716</updated>
       <workItem from="1765404739155" duration="172000" />
       <workItem from="1765858653173" duration="1092000" />
-      <workItem from="1765899809784" duration="1587000" />
+      <workItem from="1765899809784" duration="8697000" />
+      <workItem from="1765910357971" duration="823000" />
+      <workItem from="1765911219739" duration="2608000" />
+      <workItem from="1765913919866" duration="1746000" />
+      <workItem from="1765942892063" duration="8441000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-core" />
+    <option featureType="dependencySupport" implementationName="executable:docker" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.validation:jakarta.validation-api" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.persistence:jakarta.persistence-api" />
+    <option featureType="dependencySupport" implementationName="executable:kubectl" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.data:spring-data-commons" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.cloud:spring-cloud-context" />
+    <option featureType="dependencySupport" implementationName="java:org.hibernate.validator:hibernate-validator" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-webmvc" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.xml.ws:jakarta.xml.ws-api" />
+    <option featureType="dependencySupport" implementationName="java:org.projectlombok:lombok" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

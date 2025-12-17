@@ -18,4 +18,7 @@ public interface InventarioSucursalService {
     void deleteFisicoById(Long id);
     InventarioSucursalDTO activarById(Long id);
     List<InventarioMedicamentoDTO> obtenerInventarioDetalladoPorSucursal(Long sucursalId);
+
+    Integer consultarStock(Long medicamentoId, Long sucursalId);
+    void descontarStock(Long medicamentoId, Long sucursalId, Integer cantidad);
 }

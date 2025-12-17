@@ -5,6 +5,7 @@ import ec.espe.msinventariov2.exceptions.MedicamentoNotFoundException;
 import ec.espe.msinventariov2.models.dto.InventarioMedicamentoDTO;
 import ec.espe.msinventariov2.models.dto.InventarioSucursalDTO;
 import ec.espe.msinventariov2.models.dto.MedicamentosDTO;
+import ec.espe.msinventariov2.models.dto.StockRequestDTO;
 import ec.espe.msinventariov2.services.InventarioSucursal.InventarioSucursalService;
 import feign.FeignException;
 import jakarta.validation.Valid;
@@ -124,5 +125,20 @@ public class InventarioSucursalController {
     @PatchMapping("/activar/{id}")
     public ResponseEntity<InventarioSucursalDTO> activarInventario(@PathVariable Long id) {
         return ResponseEntity.ok(inventarioService.activarById(id));
+    }
+
+    // Endpoint para consultar stock (usado por Ventas antes de confirmar)
+    @GetMapping("/stock/{medicamentoId}/{sucursalId}")
+    public ResponseEntity<Integer> obtenerStockActual(
+            @PathVariable Long medicamentoId,
+            @PathVariable Long sucursalId) {
+        return ResponseEntity.ok(inventarioService.consultarStock(medicamentoId, sucursalId));
+    }
+
+    // Endpoint para descontar (usado por Ventas al finalizar la compra)
+    @PostMapping("/descontar")
+    public ResponseEntity<Void> descontarStock(@RequestBody StockRequestDTO dto) {
+        inventarioService.descontarStock(dto.getMedicamentoId(), dto.getSucursalId(), dto.getCantidad());
+        return ResponseEntity.ok().build();
     }
 }

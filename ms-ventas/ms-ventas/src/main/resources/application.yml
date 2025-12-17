@@ -2,7 +2,7 @@ spring:
   application:
     name: ventas-service
   profiles:
-    active: dev
+    active: prod
 
 server:
   port: 8083

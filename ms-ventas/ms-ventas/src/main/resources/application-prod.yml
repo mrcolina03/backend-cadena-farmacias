@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://${DB_HOST:mysql}:${DB_PORT:3306}/ventas_db
-    username: ${DB_USER:ventas}
-    password: ${DB_PASSWORD:ventas123}
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:ventas_db}?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:1234}
 
   jpa:
     hibernate:
@@ -11,7 +11,7 @@ spring:
     open-in-view: false
 
 inventario:
-  url: http://ms-inventario:8082
+  url: ${INVENTARIO_URL:http://localhost:8082}
 
 logging:
   level:

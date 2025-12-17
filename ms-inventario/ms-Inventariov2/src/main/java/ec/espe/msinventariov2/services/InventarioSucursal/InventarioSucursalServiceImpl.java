@@ -238,6 +238,27 @@ public class InventarioSucursalServiceImpl implements InventarioSucursalService 
         return resultado;
     }
 
+    @Override
+    public Integer consultarStock(Long medicamentoId, Long sucursalId) {
+        return inventarioRepository.findBySucursalIdAndIdMedicamento(sucursalId, medicamentoId)
+                .map(InventarioSucursal::getCantidad)
+                .orElse(0); // Si no existe el registro, el stock es 0
+    }
+
+    @Transactional
+    @Override
+    public void descontarStock(Long medicamentoId, Long sucursalId, Integer cantidad) {
+        InventarioSucursal inventario = inventarioRepository.findBySucursalIdAndIdMedicamento(sucursalId, medicamentoId)
+                .orElseThrow(() -> new RuntimeException("No existe registro de inventario para este producto en la sucursal."));
+
+        if (inventario.getCantidad() < cantidad) {
+            throw new RuntimeException("Stock insuficiente para el medicamento ID: " + medicamentoId);
+        }
+
+        inventario.setCantidad(inventario.getCantidad() - cantidad);
+        inventarioRepository.save(inventario);
+    }
+
     // ========================
     // MAPPERS
     // ========================
