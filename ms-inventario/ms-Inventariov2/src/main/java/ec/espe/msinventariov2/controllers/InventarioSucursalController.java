@@ -94,10 +94,10 @@ public class InventarioSucursalController {
     @PutMapping("/{inventarioId}")
     public ResponseEntity<InventarioSucursalDTO> actualizarStock(
             @PathVariable Long inventarioId,
-            @RequestBody InventarioSucursalDTO dto
+            @RequestParam Integer cantidad
     ) {
         InventarioSucursalDTO actualizado =
-                inventarioService.updateStock(inventarioId, dto.getCantidad());
+                inventarioService.updateStock(inventarioId, cantidad);
 
         return ResponseEntity.ok(actualizado);
     }
