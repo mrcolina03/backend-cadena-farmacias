@@ -7,12 +7,16 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: false
+    show-sql: true
     open-in-view: false
 
+# IMPORTANTE: Usar nombre del contenedor Docker
 inventario:
-  url: ${INVENTARIO_URL:http://localhost:8082}
+  url: ${INVENTARIO_URL:http://ms-inventario:8082}
 
 logging:
   level:
-    com.empresa.ventas: INFO
+    com.empresa.ventas: DEBUG  # CAMBIADO A DEBUG
+    org.example.msventas: DEBUG
+    org.springframework.cloud.openfeign: DEBUG  # PARA VER LLAMADAS FEIGN
+

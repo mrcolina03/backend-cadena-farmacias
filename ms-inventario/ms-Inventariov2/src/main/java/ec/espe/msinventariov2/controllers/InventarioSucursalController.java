@@ -88,16 +88,16 @@ public class InventarioSucursalController {
     }
 
     // ========================
-    // PUT (CORREGIDO)
+    // PUT (CORREGIDO - ACEPTA PARÁMETROS)
     // ========================
 
     @PutMapping("/{inventarioId}")
     public ResponseEntity<InventarioSucursalDTO> actualizarStock(
             @PathVariable Long inventarioId,
-            @RequestBody InventarioSucursalDTO dto
+            @RequestParam Integer cantidad
     ) {
         InventarioSucursalDTO actualizado =
-                inventarioService.updateStock(inventarioId, dto.getCantidad());
+                inventarioService.updateStock(inventarioId, cantidad);
 
         return ResponseEntity.ok(actualizado);
     }
@@ -127,7 +127,10 @@ public class InventarioSucursalController {
         return ResponseEntity.ok(inventarioService.activarById(id));
     }
 
-    // Endpoint para consultar stock (usado por Ventas antes de confirmar)
+    // ========================
+    // ENDPOINTS PARA VENTAS
+    // ========================
+    
     @GetMapping("/stock/{medicamentoId}/{sucursalId}")
     public ResponseEntity<Integer> obtenerStockActual(
             @PathVariable Long medicamentoId,
@@ -135,7 +138,6 @@ public class InventarioSucursalController {
         return ResponseEntity.ok(inventarioService.consultarStock(medicamentoId, sucursalId));
     }
 
-    // Endpoint para descontar (usado por Ventas al finalizar la compra)
     @PostMapping("/descontar")
     public ResponseEntity<Void> descontarStock(@RequestBody StockRequestDTO dto) {
         inventarioService.descontarStock(dto.getMedicamentoId(), dto.getSucursalId(), dto.getCantidad());
