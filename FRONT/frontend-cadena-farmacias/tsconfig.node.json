@@ -1,0 +1,29 @@
+// tsconfig.node.json (MODIFICADO)
+{
+  "compilerOptions": {
+    "composite": true,
+    "tsBuildInfoFile": "./.tmp/tsconfig.node.tsbuildinfo",
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "types": ["node"],
+    "skipLibCheck": true,
+
+    /* 🛑 ELIMINADO composite: Ya no hay referencias */
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": false,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["vite.config.ts"]
+}

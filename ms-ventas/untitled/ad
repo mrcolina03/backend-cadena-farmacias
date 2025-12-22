@@ -1,0 +1,269 @@
+Perfecto. A continuación te presento **la solución completa del mini-sistema reactivo**, **basada directamente en el estilo y conceptos del código que ya trabajaste en el laboratorio** (Publisher–Subscriber, asincronía, errores, recuperación y backpressure).
+Esto te sirve **tal cual para el examen** y además está estructurado **exactamente para que puedas sacar todas las evidencias del PDF**.
+
+---
+
+# 📦 Mini-Sistema Reactivo de Procesamiento de Paquetes
+
+**Project Reactor – Examen Práctico**
+
+**Estudiante:** Johan SAT
+*(incluido explícitamente en mensajes de consola y nombre de clases, como exige el enunciado)*
+
+---
+
+## 🧱 Estructura del proyecto (OBLIGATORIA)
+
+```
+org.example
+│
+├── MainExamenReactivo.java
+└── SubscriberPaquetes.java
+```
+
+---
+
+# 📌 MainExamenReactivo.java
+
+```java
+package org.example;
+
+import reactor.core.publisher.Flux;
+
+import java.time.Duration;
+import java.util.List;
+
+public class MainExamenReactivo {
+
+    public static void main(String[] args) {
+
+        System.out.println("========================================");
+        System.out.println("EXAMEN REACTIVO - PROCESAMIENTO DE PAQUETES");
+        System.out.println("Estudiante: Johan SAT");
+        System.out.println("========================================");
+
+        // 1) Publisher: lista de pesos (20 valores)
+        List<Double> pesosPaquetes = List.of(
+                1.5, 2.8, 3.0, 4.2, 5.0,
+                6.3, 7.1, 8.5, 9.0, 10.2,
+                11.7, 12.4, 13.6, 14.9, 15.3,
+                16.8, 17.5, 18.0, 19.4, 22.0 // 22 provoca error
+        );
+
+        Flux<Double> flujoPaquetes = Flux.fromIterable(pesosPaquetes)
+                // 2) Flujo asíncrono
+                .delayElements(Duration.ofMillis(500))
+
+                // 3) Filtrado de paquetes válidos
+                .filter(peso -> {
+                    if (peso < 3.0) {
+                        System.out.println("Paquete descartado (peso inválido): " + peso + " kg");
+                    }
+                    return peso >= 3.0;
+                })
+
+                // 5) Error: paquete prohibido
+                .map(peso -> {
+                    if (peso > 20.0) {
+                        throw new RuntimeException("Paquete prohibido detectado (>20kg): " + peso + " kg");
+                    }
+                    return peso;
+                })
+
+                // 4) Transformación: cálculo de costo
+                .map(peso -> {
+                    double costo = peso * 1.25;
+                    System.out.println("Transformación -> Peso: " + peso + " kg | Costo: $" + costo);
+                    return costo;
+                })
+
+                // 6) Recuperación del error
+                .onErrorResume(error -> {
+                    System.err.println("ERROR detectado: " + error.getMessage());
+                    System.err.println("Recuperando flujo con costos por defecto...");
+                    return Flux.just(10.0, 12.5, 15.0, 17.5, 20.0);
+                });
+
+        // 7) Subscriber personalizado con backpressure
+        flujoPaquetes.subscribe(new SubscriberPaquetes(2));
+
+        // Mantener la app viva para flujo asíncrono
+        try {
+            Thread.sleep(20000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+---
+
+# 📌 SubscriberPaquetes.java
+
+```java
+package org.example;
+
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
+public class SubscriberPaquetes implements Subscriber<Double> {
+
+    private final int batchSize;
+    private Subscription subscription;
+    private int procesados = 0;
+
+    public SubscriberPaquetes(int batchSize) {
+        this.batchSize = batchSize;
+    }
+
+    @Override
+    public void onSubscribe(Subscription subscription) {
+        this.subscription = subscription;
+        System.out.println("onSubscribe: Suscripción iniciada (Johan SAT)");
+        System.out.println("Solicitando " + batchSize + " paquetes...");
+        subscription.request(batchSize);
+    }
+
+    @Override
+    public void onNext(Double costo) {
+        procesados++;
+        System.out.println("onNext: Costo recibido -> $" + costo + " | Total procesados: " + procesados);
+
+        if (procesados % batchSize == 0) {
+            System.out.println("Lote procesado. Solicitando siguiente lote de " + batchSize + " paquetes...");
+            subscription.request(batchSize);
+        }
+    }
+
+    @Override
+    public void onError(Throwable throwable) {
+        System.err.println("onError: Error en el flujo -> " + throwable.getMessage());
+    }
+
+    @Override
+    public void onComplete() {
+        System.out.println("onComplete: Procesamiento de paquetes finalizado correctamente.");
+    }
+}
+```
+
+---
+
+# 🧾 Cómo obtener CADA EVIDENCIA del PDF
+
+## ✅ EVIDENCIA 1 — Publisher
+
+* Captura del código:
+
+```java
+Flux.fromIterable(pesosPaquetes)
+```
+
+---
+
+## ✅ EVIDENCIA 2 — Flujo asíncrono
+
+* Captura del código:
+
+```java
+.delayElements(Duration.ofMillis(500))
+```
+
+* Captura de consola mostrando llegada progresiva (cada 500 ms).
+
+---
+
+## ✅ EVIDENCIA 3 — Filter
+
+* Código:
+
+```java
+.filter(peso -> peso >= 3.0)
+```
+
+* Consola mostrando:
+
+```
+Paquete descartado (peso inválido): 1.5 kg
+```
+
+---
+
+## ✅ EVIDENCIA 4 — Transformación
+
+* Código:
+
+```java
+.map(peso -> peso * 1.25)
+```
+
+* Consola:
+
+```
+Transformación -> Peso: 5.0 kg | Costo: $6.25
+```
+
+---
+
+## ✅ EVIDENCIA 5 — Error
+
+* Código:
+
+```java
+if (peso > 20.0) {
+    throw new RuntimeException(...)
+}
+```
+
+* Consola:
+
+```
+ERROR detectado: Paquete prohibido detectado (>20kg): 22.0 kg
+```
+
+---
+
+## ✅ EVIDENCIA 6 — Recuperación
+
+* Código:
+
+```java
+.onErrorResume(...)
+```
+
+* Consola:
+
+```
+Recuperando flujo con costos por defecto...
+onNext: $10.0
+onNext: $12.5
+```
+
+---
+
+## ✅ EVIDENCIA 7 — Backpressure
+
+* Código del Subscriber:
+
+```java
+subscription.request(2);
+```
+
+* Consola:
+
+```
+Solicitando 2 paquetes...
+Lote procesado. Solicitando siguiente lote de 2 paquetes...
+```
+
+---
+
+Si quieres, en el siguiente mensaje puedo ayudarte a:
+
+* Redactar **la explicación teórica para el PDF**
+* Armar **la portada del informe**
+* Preparar **respuestas tipo defensa oral**
+* Simplificar el código si el docente pide algo más corto
+
+👉 **Dime qué sigue y lo hacemos paso a paso.**

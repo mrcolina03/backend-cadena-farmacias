@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Variables de entorno para la etapa de build (Vite las usa en npm run build)
+        VITE_API_BASE_URL: "http://localhost:8081/api/catalogo"
+        VITE_API_INVENTARIO_URL: "http://localhost:8082/api/inventario"
+        VITE_API_VENTAS_URL: "http://localhost:8083/api/ventas"
+        VITE_API_REPORTES_URL: "http://localhost:8083/api/reportes"
+    container_name: frontend-cadena-farmacia
+    ports:
+      - "5173:80"
+    environment:
+      # Variables disponibles en tiempo de ejecución
+      VITE_API_BASE_URL: "http://localhost:8081/api/catalogo"
+      VITE_API_INVENTARIO_URL: "http://localhost:8082/api/inventario"
+      VITE_API_VENTAS_URL: "http://localhost:8083/api/ventas"
+      VITE_API_REPORTES_URL: "http://localhost:8083/api/reportes"
+    networks:
+      - red_cadena_farmacia
+
+networks:
+  red_cadena_farmacia:
+    external: true

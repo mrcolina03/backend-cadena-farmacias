@@ -5,19 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="59200706-0b16-4a56-804a-43801fd50d7e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/models/dto/VentaReporteDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/src/domains/reportes/clients/ReporteService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/src/domains/reportes/clients/ReporteService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/src/domains/reportes/components/ReporteChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/src/domains/reportes/components/ReporteChart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/src/domains/reportes/pages/ReportesPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/src/domains/reportes/pages/ReportesPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/src/domains/reportes/types/Reporte.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/src/domains/reportes/types/Reporte.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/src/domains/ventas/components/VentaForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/src/domains/ventas/components/VentaForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/FRONT/frontend-cadena-farmacias/tsconfig.tsbuildinfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/init.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/controllers/ReporteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/controllers/ReporteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/repositories/VentaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/repositories/VentaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/services/VentaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/services/VentaService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +151,7 @@
       <workItem from="1765911219739" duration="2608000" />
       <workItem from="1765913919866" duration="1746000" />
       <workItem from="1765942892063" duration="8441000" />
-      <workItem from="1765981272644" duration="8287000" />
+      <workItem from="1765981272644" duration="9142000" />
     </task>
     <servers />
   </component>
