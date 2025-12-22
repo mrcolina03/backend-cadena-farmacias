@@ -71,7 +71,7 @@ services:
       DB_NAME: ventas_db
       DB_USER: root
       DB_PASSWORD: abcd
-      INVENTARIO_URL: http://localhost:8082
+      INVENTARIO_URL: http://ms-inventario:8082
     depends_on:
       - mysql-sisdb2025
     networks:

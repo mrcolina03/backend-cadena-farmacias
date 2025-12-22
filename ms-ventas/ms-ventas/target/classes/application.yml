@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: ventas-service
+  profiles:
+    active: prod
+
+server:
+  port: 8083
