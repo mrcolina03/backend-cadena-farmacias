@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: gw
+
+# configuración para api gw
+server:
+  port: 8080
+
+  cloud:
+    gateway:
+      routes:
+        - id: c-books
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/libros/**
+        # si estuviese dockerizado, la uri sería:
+        #   uri: http://c-books:8081
+
+        - id: c-authors
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/autores/**
+
+logging:
+    level:
+        org.springframework.cloud.gateway: DEBUG
+        org.springframework.web: DEBUG
+        reactor.netty.http.server: DEBUG
+        reactor.netty.http.client: DEBUG
