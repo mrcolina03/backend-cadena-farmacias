@@ -77,6 +77,25 @@ services:
     networks:
       - red_cadena_farmacia
 
+  # API Gateway (Puerto 8085)
+  ms-gw:
+    build:
+      context: ./ms-api-gw/gateway
+      dockerfile: Dockerfile
+    container_name: ms-gw
+    ports:
+      - "8085:8085"
+    environment:
+      CATALOGO_SERVICE_URI: http://ms-catalogo:8081
+      INVENTARIO_SERVICE_URI: http://ms-inventario:8082
+      VENTAS_SERVICE_URI: http://ms-ventas:8083
+    depends_on:
+      - ms-catalogo
+      - ms-inventario
+      - ms-ventas
+    networks:
+      - red_cadena_farmacia
+
   # Frontend (React / Vite) - ADAPTADO
   frontend-cadena-farmacia:
     build:
@@ -100,6 +119,7 @@ services:
       - ms-catalogo
       - ms-inventario
       - ms-ventas
+      - ms-gw
     networks:
       - red_cadena_farmacia
 
