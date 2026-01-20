@@ -1,0 +1,4 @@
+com\example\gateway\config\CorsConfig.class
+com\example\gateway\config\GatewayConfig.class
+com\example\gateway\GatewayApplication.class
+com\example\gateway\config\SecurityConfig.class

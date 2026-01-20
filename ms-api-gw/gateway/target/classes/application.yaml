@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: gateway
+
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOriginPatterns: "http://localhost:[*]"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - PATCH
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
+      routes:
+        - id: c-Catalogo
+          uri: ${CATALOGO_SERVICE_URI:http://localhost:8081}
+          predicates:
+            - Path=/api/catalogo/**
+
+        - id: c-inventario
+          uri: ${INVENTARIO_SERVICE_URI:http://localhost:8082}
+          predicates:
+            - Path=/api/inventario/**
+
+        - id: c-ventas
+          uri: ${VENTAS_SERVICE_URI:http://localhost:8083}
+          predicates:
+            - Path=/api/ventas/**
+
+        - id: c-reportes
+          # Reutiliza la variable del servicio de ventas ya que apuntan al mismo puerto
+          uri: ${VENTAS_SERVICE_URI:http://localhost:8083}
+          predicates:
+            - Path=/api/reportes/**
+
+server:
+  port: 8085
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.netty.http.client: DEBUG
