@@ -1,0 +1,18 @@
+services:
+  backend-cadena-farmacias-ms-gw:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: backend-cadena-farmacias-ms-gw
+    ports:
+      - "8085:8085"
+    networks:
+      - red_cadena_farmacia
+    environment:
+      - CATALOGO_SERVICE_URI=http://ms-catalogo:8081
+      - INVENTARIO_SERVICE_URI=http://ms-inventario:8082
+      - VENTAS_SERVICE_URI=http://ms-ventas:8083
+
+networks:
+  red_cadena_farmacia:
+    driver: bridge

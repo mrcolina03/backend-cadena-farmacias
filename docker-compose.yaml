@@ -37,7 +37,7 @@ services:
   # Microservicio Inventario (Puerto 8082)
   ms-inventario:
     build:
-      context: ./ms-inventario/ms-Inventariov2
+      context: ./ms-inventario/ms-inventariov2
       dockerfile: Dockerfile
     container_name: ms-inventario
     ports:
@@ -84,18 +84,18 @@ services:
       dockerfile: Dockerfile
       args:
         # Importante: Vite necesita estas variables durante el 'npm run build'
-        VITE_API_BASE_URL: "http://localhost:8081/api/catalogo"
-        VITE_API_INVENTARIO_URL: "http://localhost:8082/api/inventario"
-        VITE_API_VENTAS_URL: "http://localhost:8083/api/ventas"
-        VITE_API_REPORTES_URL: "http://localhost:8083/api/reportes"
+        VITE_API_BASE_URL: "http://localhost:8085/api/catalogo"
+        VITE_API_INVENTARIO_URL: "http://localhost:8085/api/inventario"
+        VITE_API_VENTAS_URL: "http://localhost:8085/api/ventas"
+        VITE_API_REPORTES_URL: "http://localhost:8085/api/reportes"
     container_name: frontend-cadena-farmacia
     ports:
       - "5173:80"
     environment:
-      VITE_API_BASE_URL: "http://localhost:8081/api/catalogo"
-      VITE_API_INVENTARIO_URL: "http://localhost:8082/api/inventario"
-      VITE_API_VENTAS_URL: "http://localhost:8083/api/ventas"
-      VITE_API_REPORTES_URL: "http://localhost:8083/api/reportes"
+      VITE_API_BASE_URL: "http://localhost:8085/api/catalogo"
+      VITE_API_INVENTARIO_URL: "http://localhost:8085/api/inventario"
+      VITE_API_VENTAS_URL: "http://localhost:8085/api/ventas"
+      VITE_API_REPORTES_URL: "http://localhost:8085/api/reportes"
     depends_on:
       - ms-catalogo
       - ms-inventario

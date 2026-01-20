@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ms-inventario.iml" filepath="$PROJECT_DIR$/.idea/ms-inventario.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ms-api-gw.iml" filepath="$PROJECT_DIR$/.idea/ms-api-gw.iml" />
     </modules>
   </component>
 </project>

@@ -12,6 +12,7 @@ espe\edu\ec\mscatalogo\services\ClienteService.class
 espe\edu\ec\mscatalogo\models\dto\ClienteDTO.class
 espe\edu\ec\mscatalogo\exceptions\ResourceNotFoundException.class
 espe\edu\ec\mscatalogo\models\dto\PrescripcionDTO.class
+espe\edu\ec\mscatalogo\config\SecurityConfig.class
 espe\edu\ec\mscatalogo\models\entities\Cliente.class
 espe\edu\ec\mscatalogo\controllers\ClienteController.class
 espe\edu\ec\mscatalogo\repositories\PrescripcionRepository.class

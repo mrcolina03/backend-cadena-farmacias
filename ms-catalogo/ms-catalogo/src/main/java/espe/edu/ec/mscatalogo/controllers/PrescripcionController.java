@@ -12,7 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/prescripciones")
-@CrossOrigin(origins = "*")
 public class PrescripcionController {
 
     @Autowired

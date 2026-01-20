@@ -1,6 +1,6 @@
 org\example\msventas\models\entities\Venta.class
+org\example\msventas\config\SecurityConfig.class
 org\example\msventas\config\FeignConfig.class
-org\example\msventas\config\CorsConfig$1.class
 org\example\msventas\controllers\ReporteController.class
 org\example\msventas\exceptions\ServicioExternoException.class
 org\example\msventas\exceptions\GlobalExceptionHandler.class

@@ -6,7 +6,7 @@ WORKDIR /app
 COPY ./target/gateway-0.0.1-SNAPSHOT.jar ./gateway-0.0.1-SNAPSHOT.jar
 
 #Expone el puerto 8001 para acceder a la aplicación
-EXPOSE 8082
+EXPOSE 8085
 
 #Comando para ejecutar la aplicación
 ENTRYPOINT ["java","-jar","gateway-0.0.1-SNAPSHOT.jar"]
