@@ -9,9 +9,15 @@ services:
     networks:
       - red_cadena_farmacia
     environment:
-      - CATALOGO_SERVICE_URI=http://ms-catalogo:8081
-      - INVENTARIO_SERVICE_URI=http://ms-inventario:8082
-      - VENTAS_SERVICE_URI=http://ms-ventas:8083
+      CATALOGO_SERVICE_URI: http://localhost:8081
+      INVENTARIO_SERVICE_URI: http://localhost:8082
+      VENTAS_SERVICE_URI: http://localhost:8083
+
+      # Opción A: Gateway como Resource Server (valida JWT)
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: http://localhost:9000
+
+      # Recomendado para depurar si está protegiendo o no
+      LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY: DEBUG
 
 networks:
   red_cadena_farmacia:

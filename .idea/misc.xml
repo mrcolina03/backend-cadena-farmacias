@@ -7,6 +7,7 @@
         <option value="$PROJECT_DIR$/ms-ventas/ms-ventas/pom.xml" />
         <option value="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/pom.xml" />
         <option value="$PROJECT_DIR$/ms-catalogo/ms-catalogo/pom.xml" />
+        <option value="$PROJECT_DIR$/oauth-server/pom.xml" />
       </list>
     </option>
   </component>

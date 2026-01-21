@@ -1,0 +1,116 @@
+Index: ms-api-gw/ms-api-gw/Dockerfile
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ms-api-gw/ms-api-gw/Dockerfile b/ms-api-gw/ms-api-gw/Dockerfile
+new file mode 100644
+--- /dev/null	(date 1767827749604)
++++ b/ms-api-gw/ms-api-gw/Dockerfile	(date 1767827749604)
+@@ -0,0 +1,4 @@
++FROM eclipse-temurin:17-jdk
++VOLUME /tmp
++COPY target/api-gateway.jar app.jar
++ENTRYPOINT ["java","-jar","/app.jar"]
+Index: docker-compose.yaml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>version: \"3.9\"\r\n\r\nservices:\r\n  # Base de Datos Unificada\r\n  mysql-sisdb2025:\r\n    image: mysql:8.0\r\n    container_name: mysql-sisdb2025\r\n    ports:\r\n      - \"3307:3306\"\r\n    environment:\r\n      MYSQL_ROOT_PASSWORD: abcd\r\n    volumes:\r\n      - ./init.sql:/docker-entrypoint-initdb.d/init.sql\r\n      - db_data:/var/lib/mysql\r\n    networks:\r\n      - red_cadena_farmacia\r\n\r\n  # Microservicio Catálogo (Puerto 8081)\r\n  ms-catalogo:\r\n    build:\r\n      context: ./ms-catalogo/ms-catalogo\r\n      dockerfile: Dockerfile\r\n    container_name: ms-catalogo\r\n    ports:\r\n      - \"8081:8081\"\r\n    environment:\r\n      DB_HOST: mysql-sisdb2025\r\n      DB_PORT: 3306\r\n      DB_USER: root\r\n      DB_PWD: abcd\r\n      DB_NAME: catalogo_db\r\n    depends_on:\r\n      - mysql-sisdb2025\r\n    networks:\r\n      - red_cadena_farmacia\r\n\r\n  # Microservicio Inventario (Puerto 8082)\r\n  ms-inventario:\r\n    build:\r\n      context: ./ms-inventario/ms-Inventariov2\r\n      dockerfile: Dockerfile\r\n    container_name: ms-inventario\r\n    ports:\r\n      - \"8082:8082\"\r\n    environment:\r\n      DB_HOST: mysql-sisdb2025\r\n      DB_PORT: 3306\r\n      DB_USER: root\r\n      DB_PWD: abcd\r\n      DB_NAME: inventario_db\r\n      API_CATALOGO: ms-catalogo\r\n      FRONTEND: frontend-cadena-farmacia\r\n      FRONTEND_PORT: 80\r\n    depends_on:\r\n      - mysql-sisdb2025\r\n    networks:\r\n      - red_cadena_farmacia\r\n\r\n  # Microservicio Ventas (Puerto 8083)\r\n  ms-ventas:\r\n    build:\r\n      context: ./ms-ventas/ms-ventas\r\n      dockerfile: Dockerfile\r\n    container_name: ms-ventas\r\n    ports:\r\n      - \"8083:8083\"\r\n    environment:\r\n      SPRING_PROFILES_ACTIVE: prod\r\n      DB_HOST: mysql-sisdb2025\r\n      DB_PORT: 3306\r\n      DB_NAME: ventas_db\r\n      DB_USER: root\r\n      DB_PASSWORD: abcd\r\n      INVENTARIO_URL: http://localhost:8082\r\n    depends_on:\r\n      - mysql-sisdb2025\r\n    networks:\r\n      - red_cadena_farmacia\r\n\r\n  # Frontend (React / Vite) - ADAPTADO\r\n  frontend-cadena-farmacia:\r\n    build:\r\n      context: ./FRONT/frontend-cadena-farmacias\r\n      dockerfile: Dockerfile\r\n      args:\r\n        # Importante: Vite necesita estas variables durante el 'npm run build'\r\n        VITE_API_BASE_URL: \"http://localhost:8081/api/catalogo\"\r\n        VITE_API_INVENTARIO_URL: \"http://localhost:8082/api/inventario\"\r\n        VITE_API_VENTAS_URL: \"http://localhost:8083/api/ventas\"\r\n        VITE_API_REPORTES_URL: \"http://localhost:8083/api/reportes\"\r\n    container_name: frontend-cadena-farmacia\r\n    ports:\r\n      - \"5173:80\"\r\n    environment:\r\n      VITE_API_BASE_URL: \"http://localhost:8081/api/catalogo\"\r\n      VITE_API_INVENTARIO_URL: \"http://localhost:8082/api/inventario\"\r\n      VITE_API_VENTAS_URL: \"http://localhost:8083/api/ventas\"\r\n      VITE_API_REPORTES_URL: \"http://localhost:8083/api/reportes\"\r\n    depends_on:\r\n      - ms-catalogo\r\n      - ms-inventario\r\n      - ms-ventas\r\n    networks:\r\n      - red_cadena_farmacia\r\n\r\nnetworks:\r\n  red_cadena_farmacia:\r\n    driver: bridge\r\n\r\nvolumes:\r\n  db_data:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/docker-compose.yaml b/docker-compose.yaml
+--- a/docker-compose.yaml	(revision 8a39f451bc730784c358ef685b22bf8799a6873e)
++++ b/docker-compose.yaml	(date 1767827909221)
+@@ -15,6 +15,22 @@
+     networks:
+       - red_cadena_farmacia
+ 
++  #api-gateway
++  api-gateway:
++    build:
++      context: ./api-gateway
++      dockerfile: Dockerfile
++    container_name: api-gateway
++    ports:
++      - "8080:8080"
++    depends_on:
++      - ms-catalogo
++      - ms-inventario
++      - ms-ventas
++    networks:
++      - red_cadena_farmacia
++
++
+   # Microservicio Catálogo (Puerto 8081)
+   ms-catalogo:
+     build:
+@@ -84,18 +100,18 @@
+       dockerfile: Dockerfile
+       args:
+         # Importante: Vite necesita estas variables durante el 'npm run build'
+-        VITE_API_BASE_URL: "http://localhost:8081/api/catalogo"
+-        VITE_API_INVENTARIO_URL: "http://localhost:8082/api/inventario"
+-        VITE_API_VENTAS_URL: "http://localhost:8083/api/ventas"
+-        VITE_API_REPORTES_URL: "http://localhost:8083/api/reportes"
++        VITE_API_BASE_URL: "http://localhost:8080/api/catalogo"
++        VITE_API_INVENTARIO_URL: "http://localhost:8080/api/inventario"
++        VITE_API_VENTAS_URL: "http://localhost:8080/api/ventas"
++        VITE_API_REPORTES_URL: "http://localhost:8080/api/reportes"
+     container_name: frontend-cadena-farmacia
+     ports:
+       - "5173:80"
+     environment:
+-      VITE_API_BASE_URL: "http://localhost:8081/api/catalogo"
+-      VITE_API_INVENTARIO_URL: "http://localhost:8082/api/inventario"
+-      VITE_API_VENTAS_URL: "http://localhost:8083/api/ventas"
+-      VITE_API_REPORTES_URL: "http://localhost:8083/api/reportes"
++      VITE_API_BASE_URL: "http://localhost:8080/api/catalogo"
++      VITE_API_INVENTARIO_URL: "http://localhost:8080/api/inventario"
++      VITE_API_VENTAS_URL: "http://localhost:8080/api/ventas"
++      VITE_API_REPORTES_URL: "http://localhost:8080/api/reportes"
+     depends_on:
+       - ms-catalogo
+       - ms-inventario
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"59200706-0b16-4a56-804a-43801fd50d7e\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Dockerfile\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"jsalomia\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;3788-jsalomia&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/mrcolina03/backend-cadena-farmacias.git&quot;,\r\n    &quot;accountId&quot;: &quot;fb03596f-c672-4ce4-aa41-8f043300d955&quot;\r\n  }\r\n}</component>\r\n  <component name=\"KubernetesApiPersistence\">{}</component>\r\n  <component name=\"KubernetesApiProvider\">{\r\n  &quot;isMigrated&quot;: true\r\n}</component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 4\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"36fjtqJrPScOODL8j1wiwRumFzY\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;jsalomia&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/ASUS/Documents/ESPE/7_SEPTIMO SEMESTRE ESPE/DISTRIBUIDAS/PARCIAL 2/PROYECTO&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\ASUS\\Documents\\ESPE\\7_SEPTIMO SEMESTRE ESPE\\DISTRIBUIDAS\\PARCIAL 2\\PROYECTO\\ms-ventas\\ms-ventas\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunDashboard\">\r\n    <option name=\"configurationTypes\">\r\n      <set>\r\n        <option value=\"KtorApplicationConfigurationType\" />\r\n        <option value=\"MicronautRunConfigurationType\" />\r\n        <option value=\"QuarkusRunConfigurationType\" />\r\n        <option value=\"SpringBootApplicationConfigurationType\" />\r\n      </set>\r\n    </option>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Spring Boot.MsVentasApplication\">\r\n    <configuration default=\"true\" type=\"JetRunConfigurationType\">\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"KotlinStandaloneScriptRunConfigurationType\">\r\n      <option name=\"filePath\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"MsCatalogoApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <option name=\"FRAME_DEACTIVATION_UPDATE_POLICY\" value=\"UpdateClassesAndResources\" />\r\n      <module name=\"ms-catalogo\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"espe.edu.ec.mscatalogo.MsCatalogoApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"MsInventariov2Application\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <module name=\"test\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"ec.espe.msinventariov2.MsInventariov2Application\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"MsVentasApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <option name=\"FRAME_DEACTIVATION_UPDATE_POLICY\" value=\"UpdateClassesAndResources\" />\r\n      <module name=\"ms-ventas\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"org.example.msventas.MsVentasApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.27397.103\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"59200706-0b16-4a56-804a-43801fd50d7e\" name=\"Changes\" comment=\"\" />\r\n      <created>1765404737716</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1765404737716</updated>\r\n      <workItem from=\"1765404739155\" duration=\"172000\" />\r\n      <workItem from=\"1765858653173\" duration=\"1092000\" />\r\n      <workItem from=\"1765899809784\" duration=\"8697000\" />\r\n      <workItem from=\"1765910357971\" duration=\"823000\" />\r\n      <workItem from=\"1765911219739\" duration=\"2608000\" />\r\n      <workItem from=\"1765913919866\" duration=\"1746000\" />\r\n      <workItem from=\"1765942892063\" duration=\"8441000\" />\r\n      <workItem from=\"1765981272644\" duration=\"9142000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"UnknownFeatures\">\r\n    <option featureType=\"dependencySupport\" implementationName=\"java:org.springframework:spring-core\" />\r\n    <option featureType=\"dependencySupport\" implementationName=\"executable:docker\" />\r\n    <option featureType=\"dependencySupport\" implementationName=\"java:jakarta.validation:jakarta.validation-api\" />\r\n    <option featureType=\"dependencySupport\" implementationName=\"java:jakarta.persistence:jakarta.persistence-api\" />\r\n    <option featureType=\"dependencySupport\" implementationName=\"executable:kubectl\" />\r\n    <option featureType=\"dependencySupport\" implementationName=\"java:org.springframework.data:spring-data-commons\" />\r\n    <option featureType=\"dependencySupport\" implementationName=\"java:org.springframework.cloud:spring-cloud-context\" />\r\n    <option featureType=\"dependencySupport\" implementationName=\"java:org.hibernate.validator:hibernate-validator\" />\r\n    <option featureType=\"dependencySupport\" implementationName=\"java:org.springframework.boot:spring-boot\" />\r\n    <option featureType=\"dependencySupport\" implementationName=\"java:org.springframework:spring-webmvc\" />\r\n    <option featureType=\"dependencySupport\" implementationName=\"java:jakarta.xml.ws:jakarta.xml.ws-api\" />\r\n    <option featureType=\"dependencySupport\" implementationName=\"java:org.projectlombok:lombok\" />\r\n  </component>\r\n  <component name=\"github-copilot-workspace\">\r\n    <instructionFileLocations>\r\n      <option value=\".github/instructions\" />\r\n    </instructionFileLocations>\r\n    <promptFileLocations>\r\n      <option value=\".github/prompts\" />\r\n    </promptFileLocations>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 8a39f451bc730784c358ef685b22bf8799a6873e)
++++ b/.idea/workspace.xml	(date 1768258833442)
+@@ -5,7 +5,9 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="59200706-0b16-4a56-804a-43801fd50d7e" name="Changes" comment="">
++      <change afterPath="$PROJECT_DIR$/ms-api-gw/ms-api-gw/Dockerfile" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -77,6 +79,7 @@
+     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+     &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+ }</component>
+@@ -152,6 +155,13 @@
+       <workItem from="1765913919866" duration="1746000" />
+       <workItem from="1765942892063" duration="8441000" />
+       <workItem from="1765981272644" duration="9142000" />
++      <workItem from="1767826443804" duration="524000" />
++      <workItem from="1767826983552" duration="82000" />
++      <workItem from="1767827092367" duration="404000" />
++      <workItem from="1767827759741" duration="784000" />
++      <workItem from="1767829277699" duration="224000" />
++      <workItem from="1768253325332" duration="809000" />
++      <workItem from="1768258822516" duration="11000" />
+     </task>
+     <servers />
+   </component>

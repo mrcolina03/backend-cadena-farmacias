@@ -2,12 +2,25 @@ spring:
   application:
     name: gateway
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # En docker debe ser http://oauth-server:9000
+          # En local sin docker puede ser http://localhost:9000
+          issuer-uri: ${OAUTH_ISSUER_URI:http://localhost:9000}
+
   cloud:
     gateway:
+      default-filters:
+        # Reenvía el header Authorization: Bearer ... hacia los microservicios
+        - TokenRelay
+
       globalcors:
         cors-configurations:
           '[/**]':
-            allowedOriginPatterns: "http://localhost:[*]"
+            allowedOriginPatterns:
+              - "http://localhost:*"
             allowedMethods:
               - GET
               - POST
@@ -15,10 +28,20 @@ spring:
               - DELETE
               - PATCH
               - OPTIONS
-            allowedHeaders: "*"
-            allowCredentials: true
+            allowedHeaders:
+              - Authorization
+              - Content-Type
+              - Accept
+              - Origin
+              - X-Requested-With
+            exposedHeaders:
+              - Authorization
+            # Para Opción A (Bearer Token), lo recomendado es NO usar cookies:
+            allowCredentials: false
+            maxAge: 3600
+
       routes:
-        - id: c-Catalogo
+        - id: c-catalogo
           uri: ${CATALOGO_SERVICE_URI:http://localhost:8081}
           predicates:
             - Path=/api/catalogo/**
@@ -34,7 +57,6 @@ spring:
             - Path=/api/ventas/**
 
         - id: c-reportes
-          # Reutiliza la variable del servicio de ventas ya que apuntan al mismo puerto
           uri: ${VENTAS_SERVICE_URI:http://localhost:8083}
           predicates:
             - Path=/api/reportes/**
@@ -44,6 +66,5 @@ server:
 
 logging:
   level:
-    org.springframework.cloud.gateway: DEBUG
-    org.springframework.web.reactive: DEBUG
-    reactor.netty.http.client: DEBUG
+    org.springframework.cloud.gateway: INFO
+    org.springframework.security: INFO
