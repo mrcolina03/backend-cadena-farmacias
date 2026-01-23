@@ -39,21 +39,29 @@ spring:
           uri: ${CATALOGO_SERVICE_URI:http://localhost:8081}
           predicates:
             - Path=/api/catalogo/**
+          filters:
+            - TokenRelay=
 
         - id: c-inventario
           uri: ${INVENTARIO_SERVICE_URI:http://localhost:8082}
           predicates:
             - Path=/api/inventario/**
+          filters:
+            - TokenRelay=
 
         - id: c-ventas
           uri: ${VENTAS_SERVICE_URI:http://localhost:8083}
           predicates:
             - Path=/api/ventas/**
+          filters:
+            - TokenRelay=
 
         - id: c-reportes
           uri: ${VENTAS_SERVICE_URI:http://localhost:8083}
           predicates:
             - Path=/api/reportes/**
+          filters:
+            - TokenRelay=
 
 server:
   port: 8085
