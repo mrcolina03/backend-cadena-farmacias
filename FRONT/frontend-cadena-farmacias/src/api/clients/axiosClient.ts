@@ -1,48 +1,99 @@
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig } from "axios";
+import { userManager } from "../../auth/oidc"; // <-- AJUSTA ESTA RUTA
 
-// La URL base ahora apunta a la ruta del proxy Nginx en el mismo contenedor.
-// Cuando la aplicación se ejecuta en localhost:8080, llamará a localhost:8080/api/catalogo
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api/catalogo';
+// Base URL: si usas Nginx proxy /api/catalogo, deja así.
+// Si llamas directo al gateway: http://localhost:8085/api/catalogo
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "/api/catalogo";
 
 export const axiosClient = axios.create({
-  baseURL: API_BASE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  // Puedes agregar interceptores aquí para manejo de errores global, tokens, etc.
+    baseURL: API_BASE_URL,
+    headers: {
+        "Content-Type": "application/json",
+    },
 });
 
-// --- Nuevo Helper para Extracción de Mensajes de Error ---
+// ===============================
+// 🔐 Interceptor: Bearer Token
+// ===============================
+axiosClient.interceptors.request.use(async (config) => {
+    const user = await userManager.getUser();
+
+    // Si hay token, lo añadimos
+    if (user?.access_token) {
+        config.headers = config.headers ?? {};
+        config.headers.Authorization = `Bearer ${user.access_token}`;
+    }
+
+    return config;
+});
+
+// ============================================
+// 🚨 Interceptor: Manejo global de 401
+// ============================================
+axiosClient.interceptors.response.use(
+    (response) => response,
+    async (error: AxiosError) => {
+        const status = error.response?.status;
+
+        // Si el backend responde 401, intentamos relanzar login (SPA)
+        if (status === 401) {
+            const user = await userManager.getUser();
+
+            // Si no hay sesión o expiró, redirige al oauth-server
+            if (!user || user.expired) {
+                await userManager.signinRedirect();
+            }
+        }
+
+        return Promise.reject(error);
+    }
+);
+
+// --- Helper para extracción de mensajes de error ---
 export interface BackendErrorResponse {
-  message: string;
-  error: string;
-  status: number;
-  details?: string[]; // Para errores de validación
+    message?: string;
+    error?: string;
+    status?: number;
+    details?: string[];
 }
 
 export const extractErrorMessage = (error: unknown): string => {
-  if (axios.isAxiosError(error)) {
-    const axiosError = error as AxiosError;
-    const backendData = axiosError.response?.data as BackendErrorResponse;
+    if (axios.isAxiosError(error)) {
+        const axiosError = error as AxiosError;
 
-    if (backendData) {
-      let message = backendData.message;
+        // ✅ Si hay respuesta del backend
+        if (axiosError.response) {
+            const data = axiosError.response.data as BackendErrorResponse | string | undefined;
 
-      // Concatenar detalles de validación si existen
-      if (backendData.details && Array.isArray(backendData.details) && backendData.details.length > 0) {
-        // Enlazar los detalles a continuación del mensaje principal
-        message += "\nDetalles:\n- " + backendData.details.join('\n- ');
-      }
-      
-      return message;
+            // Si el backend devuelve JSON con message
+            if (data && typeof data === "object") {
+                const message = data.message || data.error || `Error HTTP ${axiosError.response.status}`;
+                const details = data.details;
+
+                if (details && Array.isArray(details) && details.length > 0) {
+                    return `${message}\nDetalles:\n- ${details.join("\n- ")}`;
+                }
+
+                return message;
+            }
+
+            // Si el backend devuelve string/plain text
+            if (typeof data === "string" && data.trim().length > 0) {
+                return data;
+            }
+
+            return `Error HTTP ${axiosError.response.status}`;
+        }
+
+        // ✅ Errores de red / CORS / servidor caído
+        if (axiosError.request) {
+            return `Error de red o conexión: ${axiosError.message}`;
+        }
+
+        // ✅ Errores de configuración Axios
+        return axiosError.message;
     }
 
-    // Fallback para errores de red o servidor sin cuerpo de respuesta JSON
-    if (axiosError.request) {
-      return `Error de red o conexión: ${axiosError.message}`;
-    }
-  }
-
-  // Error desconocido
-  return (error as Error).message || 'Error desconocido del sistema.';
+    // Error desconocido
+    return (error as Error)?.message || "Error desconocido del sistema.";
 };

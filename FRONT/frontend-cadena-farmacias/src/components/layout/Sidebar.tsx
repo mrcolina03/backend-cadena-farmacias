@@ -1,6 +1,9 @@
 import React from 'react';
 import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Divider, Box, Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { useNavigate } from 'react-router-dom';
+
 
 // Iconos existentes
 import MedicationIcon from '@mui/icons-material/Medication';
@@ -25,7 +28,7 @@ const sidebarItems: NavItem[] = [
   // --- Dominio Ventas (Rutas actualizadas a la nueva App.tsx) ---
   { text: 'Gestión de Ventas', icon: <ShoppingCartCheckoutIcon />, path: '/ventas' },
   { text: 'Reporte de Ingresos', icon: <BarChartIcon />, path: '/reportes' },
-  
+
   // --- Dominio Catálogo ---
   { text: 'Medicamentos', icon: <MedicationIcon />, path: '/catalog/medicamentos' },
   { text: 'Clientes', icon: <PeopleIcon />, path: '/catalog/clientes' },
@@ -38,6 +41,17 @@ const sidebarItems: NavItem[] = [
 
 const Sidebar: React.FC = () => {
 
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Limpia tokens o sesión
+    localStorage.removeItem('token');
+    sessionStorage.clear();
+
+    // Redirige al login
+    navigate('http://localhost:9000/login');
+  };
+
   const ventasReportes = sidebarItems.slice(0, 2);
   const catalogo = sidebarItems.slice(2, 5);
   const inventario = sidebarItems.slice(5, 7);
@@ -45,9 +59,9 @@ const Sidebar: React.FC = () => {
   const renderNavSection = (title: string, items: NavItem[]) => (
     <List sx={{ px: 1 }}>
       <Box sx={{ p: 2, pb: 1 }}>
-          <Typography variant="overline" sx={{ fontWeight: 'bold', color: 'text.secondary', letterSpacing: 1 }}>
-              {title}
-          </Typography>
+        <Typography variant="overline" sx={{ fontWeight: 'bold', color: 'text.secondary', letterSpacing: 1 }}>
+          {title}
+        </Typography>
       </Box>
       {items.map((item) => (
         <ListItem key={item.text} disablePadding sx={{ mb: 0.5 }}>
@@ -55,9 +69,9 @@ const Sidebar: React.FC = () => {
             component={NavLink}
             to={item.path}
             end // Importante para que /ventas no marque activo a /ventas/detalle
-            sx={{ 
+            sx={{
               borderRadius: 2,
-              '&.active': { 
+              '&.active': {
                 backgroundColor: 'primary.light',
                 color: 'primary.contrastText',
                 '& .MuiListItemIcon-root': {
@@ -100,7 +114,7 @@ const Sidebar: React.FC = () => {
           FarmaApp System
         </Typography>
       </Toolbar>
-      
+
       <Box sx={{ overflow: 'auto', py: 1 }}>
         {renderNavSection('Ventas y Análisis', ventasReportes)}
         <Divider sx={{ mx: 2, my: 1 }} />
@@ -108,6 +122,33 @@ const Sidebar: React.FC = () => {
         <Divider sx={{ mx: 2, my: 1 }} />
         {renderNavSection('Inventario', inventario)}
       </Box>
+      <Divider sx={{ mx: 2, my: 1 }} />
+
+      <Box sx={{ p: 2 }}>
+        <List>
+          <ListItem disablePadding>
+            <ListItemButton
+              onClick={handleLogout}
+              sx={{
+                borderRadius: 2,
+                color: 'error.main',
+                '&:hover': {
+                  backgroundColor: 'rgba(211, 47, 47, 0.08)',
+                },
+              }}
+            >
+              <ListItemIcon sx={{ color: 'error.main', minWidth: 40 }}>
+                <LogoutIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary="Cerrar sesión"
+                primaryTypographyProps={{ fontWeight: 'bold' }}
+              />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </Box>
+
     </Drawer>
   );
 };

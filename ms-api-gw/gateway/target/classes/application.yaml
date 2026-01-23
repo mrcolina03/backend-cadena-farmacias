@@ -6,21 +6,19 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          # En docker debe ser http://oauth-server:9000
-          # En local sin docker puede ser http://localhost:9000
-          issuer-uri: ${OAUTH_ISSUER_URI:http://localhost:9000}
+          # Validamos via JWK Set directo para evitar problemas de issuer hostname
+          jwk-set-uri: ${SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI:http://localhost:9000/oauth2/jwks}
 
   cloud:
     gateway:
-      default-filters:
-        # Reenvía el header Authorization: Bearer ... hacia los microservicios
-        - TokenRelay
 
+      # ✅ CORS (WebFlux Gateway)
       globalcors:
+        add-to-simple-url-handler-mapping: true
         cors-configurations:
           '[/**]':
             allowedOriginPatterns:
-              - "http://localhost:*"
+              - "http://localhost:5173"
             allowedMethods:
               - GET
               - POST
@@ -29,14 +27,10 @@ spring:
               - PATCH
               - OPTIONS
             allowedHeaders:
-              - Authorization
-              - Content-Type
-              - Accept
-              - Origin
-              - X-Requested-With
+              - "*"
             exposedHeaders:
-              - Authorization
-            # Para Opción A (Bearer Token), lo recomendado es NO usar cookies:
+              - "Authorization"
+            # ✅ Opción A (Bearer token): NO cookies
             allowCredentials: false
             maxAge: 3600
 
@@ -66,5 +60,7 @@ server:
 
 logging:
   level:
-    org.springframework.cloud.gateway: INFO
+    org.springframework.cloud.gateway: DEBUG
     org.springframework.security: INFO
+    org.springframework.web.reactive: INFO
+    reactor.netty.http.client: INFO

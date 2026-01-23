@@ -2,12 +2,13 @@ import React from 'react';
 import { Box, CssBaseline } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import Sidebar from '@components/layout/Sidebar';
+import AuthStatus from '@components/AuthStatus';
 
 const MainLayout: React.FC = () => {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      
+        <AuthStatus/>
       {/* Esto será el componente de navegación lateral */}
       <Sidebar /> 
       

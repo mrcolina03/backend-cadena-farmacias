@@ -6,7 +6,7 @@ import espe.edu.ec.mscatalogo.models.entities.Medicamento;
 import espe.edu.ec.mscatalogo.repositories.MedicamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.TransactionDefinition;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -17,7 +17,6 @@ public class MedicamentoService {
 
     @Autowired
     private MedicamentoRepository medicamentoRepository;
-    private TransactionDefinition transactionDefinition;
 
     @Transactional(readOnly = true)
     public List<MedicamentoDTO> findAll() {
@@ -83,7 +82,8 @@ public class MedicamentoService {
                 .orElseThrow(() -> new ResourceNotFoundException("Medicamento no encontrado con ID: " + id));
 
         if (medicamentoRepository.existsByCodigoAndIdNot(medicamentoDTO.getCodigo(), id)) {
-            throw new IllegalArgumentException("Ya existe otro medicamento con el código: " + medicamentoDTO.getCodigo());
+            throw new IllegalArgumentException(
+                    "Ya existe otro medicamento con el código: " + medicamentoDTO.getCodigo());
         }
 
         medicamento.setCodigo(medicamentoDTO.getCodigo());
