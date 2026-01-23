@@ -23,7 +23,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
@@ -52,19 +52,18 @@ public class SecurityConfig {
     @Bean
     @Order(1)
     public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http) throws Exception {
-        OAuth2AuthorizationServerConfigurer authorizationServerConfigurer =
-                OAuth2AuthorizationServerConfigurer.authorizationServer();
+        OAuth2AuthorizationServerConfigurer authorizationServerConfigurer = new OAuth2AuthorizationServerConfigurer();
 
         http
                 .securityMatcher(authorizationServerConfigurer.getEndpointsMatcher())
-                .with(authorizationServerConfigurer, authorizationServer ->
-                        authorizationServer.oidc(Customizer.withDefaults())
-                )
+                .securityMatcher(authorizationServerConfigurer.getEndpointsMatcher())
+                .cors(Customizer.withDefaults())
+                .with(authorizationServerConfigurer,
+                        authorizationServer -> authorizationServer.oidc(Customizer.withDefaults()))
                 .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
                 .exceptionHandling(ex -> ex.defaultAuthenticationEntryPointFor(
                         new LoginUrlAuthenticationEntryPoint("/login"),
-                        new MediaTypeRequestMatcher(MediaType.TEXT_HTML)
-                ))
+                        new MediaTypeRequestMatcher(MediaType.TEXT_HTML)))
                 .csrf(csrf -> csrf.ignoringRequestMatchers(authorizationServerConfigurer.getEndpointsMatcher()));
 
         return http.build();
@@ -77,8 +76,8 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/actuator/**").permitAll()
-                        .anyRequest().authenticated()
-                )
+                        .anyRequest().authenticated())
+                .cors(Customizer.withDefaults())
                 .formLogin(Customizer.withDefaults());
 
         return http.build();
@@ -90,15 +89,15 @@ public class SecurityConfig {
         return new JdbcUserDetailsManager(dataSource);
     }
 
-    // 4) Password encoder (IMPORTANTÍSIMO)
+    // 4) Password encoder
     @Bean
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
     // 5) Clientes OAuth2
-    //    - react-client: SPA (PKCE) -> NO usa client secret
-    //    - inventory-client: opcional para clientes server-side (si lo necesitas)
+    // - react-client: SPA (PKCE) -> NO usa client secret
+    // - inventory-client: opcional para clientes server-side (si lo necesitas)
     @Bean
     public RegisteredClientRepository registeredClientRepository(PasswordEncoder encoder) {
 
@@ -116,7 +115,7 @@ public class SecurityConfig {
                 .scope("sales.read")
                 .scope("sales.write")
                 .clientSettings(ClientSettings.builder()
-                        .requireProofKey(true)            // PKCE
+                        .requireProofKey(true) // PKCE
                         .requireAuthorizationConsent(false)
                         .build())
                 .build();
@@ -144,7 +143,7 @@ public class SecurityConfig {
     }
 
     // 6) Incluir roles/authorities dentro del access_token (claim "roles")
-    //    Así los microservicios pueden autorizar con ROLE_ADMIN, ROLE_SALES, etc.
+    // Así los microservicios pueden autorizar con ROLE_ADMIN, ROLE_SALES, etc.
     @Bean
     public OAuth2TokenCustomizer<JwtEncodingContext> tokenCustomizer() {
         return context -> {
@@ -158,7 +157,8 @@ public class SecurityConfig {
     }
 
     // 7) JWK (DEMO en memoria)
-    //    Para producción: persistir la key (archivo/keystore/db) para no invalidar tokens al reiniciar.
+    // Para producción: persistir la key (archivo/keystore/db) para no invalidar
+    // tokens al reiniciar.
     @Bean
     public JWKSource<SecurityContext> jwkSource() {
         KeyPair keyPair = generateRsaKey();
@@ -189,11 +189,11 @@ public class SecurityConfig {
     }
 
     // 8) Issuer configurable (Docker vs Local)
-    //    - En Docker: AUTH_ISSUER=http://oauth-server:9000
-    //    - En Local:  AUTH_ISSUER=http://localhost:9000
+    // - En Docker: AUTH_ISSUER=http://oauth-server:9000
+    // - En Local: AUTH_ISSUER=http://localhost:9000
     @Bean
     public AuthorizationServerSettings authorizationServerSettings(
-            @Value("${AUTH_ISSUER:http://localhost:9000}") String issuer) {
+            @Value("http://localhost:9000") String issuer) {
         return AuthorizationServerSettings.builder()
                 .issuer(issuer)
                 .build();

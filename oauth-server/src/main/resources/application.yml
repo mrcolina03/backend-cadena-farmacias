@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:3307/authdb
+    url: jdbc:postgresql://localhost:5433/authdb
     username: postgres
     password: postgres
   jdbc:
@@ -13,3 +13,5 @@ spring:
 logging:
   level:
     org.springframework.security: INFO
+    org.springframework.security.provisioning.JdbcUserDetailsManager: DEBUG
+    org.springframework.jdbc.core: DEBUG
