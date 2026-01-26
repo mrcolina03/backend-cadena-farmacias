@@ -11,7 +11,7 @@ export const usuarioClient = axios.create({
     },
 });
 
-// 🔐 Token interceptor
+// Token interceptor
 usuarioClient.interceptors.request.use(async (config) => {
     const user = await userManager.getUser();
     if (user?.access_token) {
@@ -21,7 +21,7 @@ usuarioClient.interceptors.request.use(async (config) => {
     return config;
 });
 
-// 🚨 401 interceptor
+// 401 interceptor
 usuarioClient.interceptors.response.use(
     (res) => res,
     async (error: AxiosError) => {

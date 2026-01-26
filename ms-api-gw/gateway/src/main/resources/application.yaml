@@ -64,9 +64,16 @@ spring:
             - TokenRelay=
 
         - id: c-usuarios
-          uri: ${OAUTH_SERVER_URI:http://localhost:8084}
+          uri: ${USERS_SERVICE_URI:http://localhost:8084}
           predicates:
-            - Path=/api/usuarios/**,/api/roles/**
+            - Path=/api/usuarios/**
+          filters:
+            - TokenRelay=
+        
+        - id: c-roles 
+          uri: ${USERS_SERVICE_URI:http://localhost:8084}
+          predicates:
+            - Path=/api/roles/**
           filters:
             - TokenRelay=
 

@@ -1,8 +1,8 @@
-package ec.edu.espe.oauthserver.service;
+package org.edu.espe.msusuarios.service;
 
-import ec.edu.espe.oauthserver.dto.RoleDTO;
-import ec.edu.espe.oauthserver.model.Role;
-import ec.edu.espe.oauthserver.repository.RoleRepository;
+import org.edu.espe.msusuarios.dto.RoleDTO;
+import org.edu.espe.msusuarios.model.Role;
+import org.edu.espe.msusuarios.repository.RoleRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

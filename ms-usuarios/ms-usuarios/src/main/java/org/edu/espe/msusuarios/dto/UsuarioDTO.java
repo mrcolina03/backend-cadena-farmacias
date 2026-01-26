@@ -1,4 +1,4 @@
-package ec.edu.espe.oauthserver.dto;
+package org.edu.espe.msusuarios.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

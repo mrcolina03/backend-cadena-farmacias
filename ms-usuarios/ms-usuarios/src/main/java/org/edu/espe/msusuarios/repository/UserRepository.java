@@ -1,6 +1,6 @@
-package ec.edu.espe.oauthserver.repository;
+package org.edu.espe.msusuarios.repository;
 
-import ec.edu.espe.oauthserver.model.User;
+import org.edu.espe.msusuarios.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

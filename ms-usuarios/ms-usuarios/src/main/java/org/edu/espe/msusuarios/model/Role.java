@@ -1,4 +1,4 @@
-package ec.edu.espe.oauthserver.model;
+package org.edu.espe.msusuarios.model;
 
 import jakarta.persistence.*;
 

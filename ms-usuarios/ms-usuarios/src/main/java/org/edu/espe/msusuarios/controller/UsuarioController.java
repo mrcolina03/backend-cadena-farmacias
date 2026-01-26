@@ -1,7 +1,7 @@
-package ec.edu.espe.oauthserver.controller;
+package org.edu.espe.msusuarios.controller;
 
-import ec.edu.espe.oauthserver.dto.UsuarioDTO;
-import ec.edu.espe.oauthserver.service.UserService;
+import org.edu.espe.msusuarios.dto.UsuarioDTO;
+import org.edu.espe.msusuarios.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

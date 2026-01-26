@@ -161,6 +161,7 @@ services:
       CATALOGO_SERVICE_URI: http://ms-catalogo:8081
       INVENTARIO_SERVICE_URI: http://ms-inventario:8082
       VENTAS_SERVICE_URI: http://ms-ventas:8083
+      USERS_SERVICE_URI: http://ms-usuarios:8084
 
       # Gateway como Resource Server (valida JWT)
       # Usamos jwk-set-uri interno porque issuer http://localhost:9000 no se resuelve aquí
@@ -170,6 +171,7 @@ services:
       - ms-catalogo
       - ms-inventario
       - ms-ventas
+      - ms-usuarios
       - oauth-server
     networks:
       - red_cadena_farmacia

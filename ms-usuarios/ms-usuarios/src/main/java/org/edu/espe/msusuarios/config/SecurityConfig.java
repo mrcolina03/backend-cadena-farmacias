@@ -1,4 +1,4 @@
-package main.java.org.edu.espe.msusuarios.config;
+package org.edu.espe.msusuarios.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

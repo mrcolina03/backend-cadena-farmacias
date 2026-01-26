@@ -1,7 +1,7 @@
-package ec.edu.espe.oauthserver.controller;
+package org.edu.espe.msusuarios.controller;
 
-import ec.edu.espe.oauthserver.dto.RoleDTO;
-import ec.edu.espe.oauthserver.service.RoleService;
+import org.edu.espe.msusuarios.dto.RoleDTO;
+import org.edu.espe.msusuarios.service.RoleService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/roles")
+@RequestMapping("/api/roles")
 public class RoleController {
 
     private final RoleService roleService;

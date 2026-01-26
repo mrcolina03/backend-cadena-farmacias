@@ -1,10 +1,10 @@
-package ec.edu.espe.oauthserver.service;
+package org.edu.espe.msusuarios.service;
 
-import ec.edu.espe.oauthserver.dto.UsuarioDTO;
-import ec.edu.espe.oauthserver.model.Role;
-import ec.edu.espe.oauthserver.model.User;
-import ec.edu.espe.oauthserver.repository.RoleRepository;
-import ec.edu.espe.oauthserver.repository.UserRepository;
+import org.edu.espe.msusuarios.dto.UsuarioDTO;
+import org.edu.espe.msusuarios.model.Role;
+import org.edu.espe.msusuarios.model.User;
+import org.edu.espe.msusuarios.repository.RoleRepository;
+import org.edu.espe.msusuarios.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
