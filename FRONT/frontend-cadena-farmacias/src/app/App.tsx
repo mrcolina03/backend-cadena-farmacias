@@ -33,6 +33,7 @@ import ReportesPage from '../domains/reportes/pages/ReportesPage';
 
 // --- OAuth Callback ---
 import Callback from '../pages/Callback';
+import UsuariosPage from '../pages/UsuariosPage';
 
 /* ======================================================
    🔐 Componente que protege rutas (RequireAuth)
@@ -100,6 +101,12 @@ const App: React.FC = () => {
                             <Route path="sucursal/:sucursalId" element={<StockPage />} />
                             <Route path="sucursal/inactivas" element={<SucursalListPageInactivas />} />
                         </Route>
+
+                        {/* 🔐 Dominio Seguridad */}
+                        <Route path="/seguridad">
+                            <Route path="usuarios" element={<UsuariosPage />} />
+                        </Route>
+
 
                         {/* 404 */}
                         <Route

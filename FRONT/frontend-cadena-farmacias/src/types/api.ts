@@ -20,3 +20,4 @@ export interface Venta {
   total: number;
   // Añade otros campos que pueda tener la entidad Venta
 }
+

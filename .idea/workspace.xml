@@ -6,21 +6,95 @@
   <component name="ChangeListManager">
     <list default="true" id="59200706-0b16-4a56-804a-43801fd50d7e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-api-gw/gateway/src/main/java/com/example/gateway/config/CorsConfig.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-api-gw/gateway/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-api-gw/gateway/src/main/resources/application.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-api-gw/gateway/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-api-gw/gateway/target/classes/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-api-gw/gateway/target/classes/com/example/gateway/config/CorsConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-api-gw/gateway/target/classes/com/example/gateway/GatewayApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-api-gw/gateway/target/classes/com/example/gateway/GatewayApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-api-gw/gateway/target/classes/com/example/gateway/config/GatewayConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-api-gw/gateway/target/classes/com/example/gateway/config/GatewayConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-api-gw/gateway/target/classes/com/example/gateway/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-api-gw/gateway/target/classes/com/example/gateway/config/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-api-gw/gateway/target/gateway-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/ms-api-gw/gateway/target/gateway-0.0.1-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-api-gw/gateway/target/gateway-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/ms-api-gw/gateway/target/gateway-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-api-gw/gateway/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ms-api-gw/gateway/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-api-gw/gateway/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ms-api-gw/gateway/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-api-gw/gateway/target/test-classes/com/example/gateway/GatewayApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-api-gw/gateway/target/test-classes/com/example/gateway/GatewayApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/MsCatalogoApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/MsCatalogoApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/controllers/ClienteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/controllers/ClienteController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/controllers/MedicamentoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/controllers/MedicamentoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/controllers/PrescripcionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/controllers/PrescripcionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/exceptions/ErrorResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/exceptions/ErrorResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/exceptions/GlobalExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/exceptions/GlobalExceptionHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/exceptions/ResourceNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/exceptions/ResourceNotFoundException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/models/dto/ClienteDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/models/dto/ClienteDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/models/dto/MedicamentoDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/models/dto/MedicamentoDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/models/dto/PrescripcionDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/models/dto/PrescripcionDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/models/entities/Cliente.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/models/entities/Cliente.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/models/entities/Medicamento.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/models/entities/Medicamento.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/models/entities/Prescripcion.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/models/entities/Prescripcion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/repositories/ClienteRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/repositories/ClienteRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/repositories/MedicamentoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/repositories/MedicamentoRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/repositories/PrescripcionRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/repositories/PrescripcionRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/services/ClienteService.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/services/ClienteService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/services/MedicamentoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/services/MedicamentoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/services/PrescripcionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/classes/espe/edu/ec/mscatalogo/services/PrescripcionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/test-classes/espe/edu/ec/mscatalogo/MsCatalogoApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-catalogo/ms-catalogo/target/test-classes/espe/edu/ec/mscatalogo/MsCatalogoApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/MsInventariov2Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/MsInventariov2Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/clientes/MedicamentosClienteRest.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/clientes/MedicamentosClienteRest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/config/CorsConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/config/CorsConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/controllers/InventarioSucursalController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/controllers/InventarioSucursalController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/controllers/SucursalController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/controllers/SucursalController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/exceptions/ErrorResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/exceptions/ErrorResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/exceptions/GlobalExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/exceptions/GlobalExceptionHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/exceptions/InventarioAlreadyExistsException.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/exceptions/InventarioAlreadyExistsException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/exceptions/MedicamentoNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/exceptions/MedicamentoNotFoundException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/exceptions/ResourceNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/exceptions/ResourceNotFoundException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/models/dto/InventarioMedicamentoDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/models/dto/InventarioMedicamentoDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/models/dto/InventarioSucursalDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/models/dto/InventarioSucursalDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/models/dto/MedicamentosDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/models/dto/MedicamentosDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/models/dto/StockRequestDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/models/dto/StockRequestDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/models/dto/SucursalDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/models/dto/SucursalDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/models/entities/InventarioSucursal.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/models/entities/InventarioSucursal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/models/entities/Sucursal.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/models/entities/Sucursal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/repositories/InventarioSucursalRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/repositories/InventarioSucursalRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/repositories/SucursalRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/repositories/SucursalRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/services/InventarioSucursal/InventarioSucursalService.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/services/InventarioSucursal/InventarioSucursalService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/services/InventarioSucursal/InventarioSucursalServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/services/InventarioSucursal/InventarioSucursalServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/services/sucursal/SucursalService.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/services/sucursal/SucursalService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/services/sucursal/SucursalServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/classes/ec/espe/msinventariov2/services/sucursal/SucursalServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/test-classes/ec/espe/msinventariov2/MsInventariov2ApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/test-classes/ec/espe/msinventariov2/MsInventariov2ApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/test-classes/ec/espe/msinventariov2/controllers/InventarioSucursalControllerTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/test-classes/ec/espe/msinventariov2/controllers/InventarioSucursalControllerTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/test-classes/ec/espe/msinventariov2/controllers/SucursalControllerTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventario/ms-Inventariov2/target/test-classes/ec/espe/msinventariov2/controllers/SucursalControllerTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/config/CorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/java/org/example/msventas/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/resources/application-dev.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/resources/application-prod.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/application-dev.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/application-prod.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/MsVentasApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/MsVentasApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/clients/InventarioClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/clients/InventarioClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/config/CorsConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/config/CorsConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/config/FeignConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/config/FeignConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/controllers/ReporteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/controllers/ReporteController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/controllers/VentaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/controllers/VentaController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/exceptions/DatosInvalidosException.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/exceptions/DatosInvalidosException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/exceptions/GlobalExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/exceptions/GlobalExceptionHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/exceptions/RecursoNoEncontradoException.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/exceptions/RecursoNoEncontradoException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/exceptions/ServicioExternoException.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/exceptions/ServicioExternoException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/exceptions/StockInsuficienteException.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/exceptions/StockInsuficienteException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/models/dto/DetalleVentaDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/models/dto/DetalleVentaDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/models/dto/DetalleVentaResponseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/models/dto/DetalleVentaResponseDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/models/dto/StockRequestDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/models/dto/StockRequestDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/models/dto/VentaReporteDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/models/dto/VentaReporteDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/models/dto/VentaRequestDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/models/dto/VentaRequestDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/models/dto/VentaResponseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/models/dto/VentaResponseDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/models/entities/DetalleVenta.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/models/entities/DetalleVenta.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/models/entities/Venta.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/models/entities/Venta.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/repositories/VentaRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/repositories/VentaRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/services/VentaService.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/classes/org/example/msventas/services/VentaService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/ms-ventas-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/ms-ventas-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/ms-ventas-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/ms-ventas-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/test-classes/org/example/msventas/MsVentasApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/ms-ventas/ms-ventas/target/test-classes/org/example/msventas/MsVentasApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oauth-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-server/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/oauth-server/src/main/java/ec/edu/espe/oauthserver/oauth/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-server/src/main/java/ec/edu/espe/oauthserver/oauth/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oauth-server/src/main/java/ec/edu/espe/oauthserver/oauth/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-server/src/main/java/ec/edu/espe/oauthserver/oauth/config/CorsConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/oauth-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/oauth-server/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -79,28 +153,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Notification.DisplayName-DoNotAsk-DatabaseConfigFileWatcher.found": "New/updated database configurations found",
-    "Notification.DoNotAsk-DatabaseConfigFileWatcher.found": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "APIGAT",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/ASUS/Documents/ESPE/7_SEPTIMO SEMESTRE ESPE/DISTRIBUIDAS/PARCIAL 2/PROYECTO",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "ts.external.directory.path": "C:\\Users\\ASUS\\AppData\\Roaming\\JetBrains\\IntelliJIdea2025.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Notification.DisplayName-DoNotAsk-DatabaseConfigFileWatcher.found&quot;: &quot;New/updated database configurations found&quot;,
+    &quot;Notification.DoNotAsk-DatabaseConfigFileWatcher.found&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;APIGAT&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ASUS/Documents/ESPE/7_SEPTIMO SEMESTRE ESPE/DISTRIBUIDAS/PARCIAL 2/PROYECTO&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\ASUS\\AppData\\Roaming\\JetBrains\\IntelliJIdea2025.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ASUS\Documents\ESPE\7_SEPTIMO SEMESTRE ESPE\DISTRIBUIDAS\PARCIAL 2\PROYECTO\ms-ventas\ms-ventas" />
@@ -201,6 +275,7 @@
       <workItem from="1769036688063" duration="257000" />
       <workItem from="1769037313889" duration="1873000" />
       <workItem from="1769087818127" duration="17174000" />
+      <workItem from="1769400621182" duration="226000" />
     </task>
     <servers />
   </component>

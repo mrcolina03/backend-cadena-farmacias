@@ -175,6 +175,38 @@ services:
       - red_cadena_farmacia
 
   # ==========================
+  # Microservicio Usuarios (Puerto 8084)
+  # ==========================
+  ms-usuarios:
+    build:
+      context: ./ms-usuarios/ms-usuarios
+      dockerfile: Dockerfile
+    container_name: ms-usuarios
+    ports:
+      - "8084:8084"
+    environment:
+      SPRING_APPLICATION_NAME: ms-usuarios
+
+      # 👇 MISMA BASE QUE oauth-server
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-auth:5432/authdb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+
+      SPRING_JPA_HIBERNATE_DDL_AUTO: none
+      SPRING_JPA_SHOW_SQL: "true"
+
+      # Resource Server (JWT del oauth-server)
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: http://oauth-server:9000/oauth2/jwks
+
+    depends_on:
+      - postgres-auth
+      - oauth-server
+    networks:
+      - red_cadena_farmacia
+
+
+  # ==========================
   # Frontend (React / Vite)
   # ==========================
   frontend-cadena-farmacia:

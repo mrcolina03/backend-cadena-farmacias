@@ -63,6 +63,13 @@ spring:
           filters:
             - TokenRelay=
 
+        - id: c-usuarios
+          uri: ${OAUTH_SERVER_URI:http://localhost:8084}
+          predicates:
+            - Path=/api/usuarios/**,/api/roles/**
+          filters:
+            - TokenRelay=
+
 server:
   port: 8085
 

@@ -12,12 +12,15 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
         http
+                .cors(cors -> {
+                }) // 👈 ACTIVA CORS EN SECURITY
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/ventas/**").hasAuthority("SCOPE_sales.read")
                         .anyRequest().authenticated())
-                .oauth2ResourceServer(
-                        oauth2 -> oauth2.jwt(org.springframework.security.config.Customizer.withDefaults()));
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt());
 
         return http.build();
     }

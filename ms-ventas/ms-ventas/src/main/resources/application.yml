@@ -1,8 +1,32 @@
+server:
+  port: 8083
+
 spring:
   application:
     name: ventas-service
-  profiles:
-    active: prod
 
-server:
-  port: 8083
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3307}/${DB_NAME:ventas_db}
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:abcd}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9000
+
+inventario:
+  url: ${INVENTARIO_URL:http://localhost:8082}
+
+logging:
+  level:
+    org.example.msventas: DEBUG
+    org.springframework.security: DEBUG
